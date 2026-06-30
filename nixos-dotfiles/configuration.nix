@@ -45,7 +45,7 @@
   # Enable packages
   programs.hyprland.enable = true;
   programs.localsend.enable = true;
-
+  hardware.bluetooth.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
