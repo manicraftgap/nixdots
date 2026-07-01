@@ -9,6 +9,10 @@
   font-size: 12px;
 }
 
+#workspaces button.active {
+  border-bottom: 1px solid @foreground;
+}
+
 .modules-left {
   margin-left: 8px;
 }
@@ -37,7 +41,6 @@
   margin: 0 7.5px;
 }
 
-
 #tray {
   margin-right: 16px;
 }
@@ -65,4 +68,3 @@ tooltip {
 .hidden {
   opacity: 0;
 }
-
