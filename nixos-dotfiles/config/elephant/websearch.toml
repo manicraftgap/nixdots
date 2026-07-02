@@ -1,0 +1,20 @@
+# ~/.config/elephant/websearch.toml
+
+[[entries]]
+name = "DuckDuckGo"
+prefix = ""
+url = "https://duckduckgo.com/?q=%TERM%"
+icon = "/home/mani/.config/elephant/icons/duckduckgo.png"
+default = true
+
+[[entries]]
+name = "YouTube"
+prefix = "yt:"
+url = "https://www.youtube.com/results?search_query=%TERM%"
+icon = "/home/mani/.config/elephant/icons/YouTube.webp"
+
+[[entries]]
+name = "Duck AI"
+prefix = ""
+url = "https://duck.ai/search?q=%TERM%"
+icon = "/home/mani/.config/elephant/icons/duckduckgo.png"
