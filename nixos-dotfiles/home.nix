@@ -6,6 +6,8 @@ let
   configs = {
     nvim = "nvim";
     waybar = "waybar";
+    walker = "walker";
+    elephant = "elephant";
   };
 in
 {
