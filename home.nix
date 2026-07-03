@@ -54,10 +54,7 @@ home.packages = with pkgs; [
       nix-search-tv
     ];
     text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
-}
-]
-
-
-
+  }
+];
 
 }
