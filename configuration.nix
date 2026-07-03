@@ -68,7 +68,9 @@
      hyprlock
      hyprsunset
      git
-
+     clang
+     walker
+     elephant
   ];
   
   fonts.packages = with pkgs; [
