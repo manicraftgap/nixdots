@@ -46,6 +46,7 @@ in
     configs;
 
   home.packages = with pkgs; [
+    yazi
     pkgs.writeShellApplication 
     {
       name = "ns";
