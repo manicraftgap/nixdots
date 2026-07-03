@@ -8,6 +8,7 @@ let
     waybar = "waybar";
     walker = "walker";
     elephant = "elephant";
+    ghostty = "ghostty";
   };
 in
 {
