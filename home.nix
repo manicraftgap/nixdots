@@ -48,4 +48,4 @@ in
   home.packages = with pkgs; [
     yazi
   ]
-}
+};
