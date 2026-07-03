@@ -64,9 +64,10 @@
      waywall
      prismlauncher
      nitch
-     hyprpaper
      hyprlock
      hyprsunset
+     hypridle
+     swaybg
      git
      clang
      walker
