@@ -14,7 +14,7 @@ in
 
   home.username = "mani";
   home.homeDirectory = "/home/mani";
-  home.stateVersion = "26.05";
+  home.stateVersion = "26.11";
   programs.bash = {
     enable = true;
     shellAliases = {
@@ -25,6 +25,10 @@ in
     initExtra = ''
       export PS1='\[\e[38;5;76m\]\u\[\e[0m\] in \[\e[38;5;32m\]\w\[\e[0m\] \\$ '
       nitch
+    gcm() {
+      rm -rf ~/nixos-dotfiles
+      git clone https://github.com/manicraftgap/nixos-dotfiles ~/nixos-dotfiles
+    }
     '';
     profileExtra = ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
