@@ -72,6 +72,8 @@
      clang
      walker
      elephant
+     zoxide
+
   ];
   
   fonts.packages = with pkgs; [

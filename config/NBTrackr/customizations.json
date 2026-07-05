@@ -1,0 +1,49 @@
+{
+    "use_custom_pinned_image": true,
+    "shown_measurements": 3,
+    "overworld_coords_format": "four_four",
+    "angle_display_mode": "angle_and_change",
+    "show_angle_adjustment_count": true,
+    "show_angle_error": false,
+    "show_overlay_header": true,
+    "show_coords_based_on_dimension": false,
+    "show_boat_icon": true,
+    "show_error_message": true,
+    "boat_info_hide_after": 10,
+    "boat_info_hide_after_enabled": true,
+    "show_blind_info": true,
+    "blind_info_hide_after": 20,
+    "blind_info_hide_after_enabled": false,
+    "font_name": "/home/mani/NBTrackr-imgpin-v2.5.2/assets/LiberationSans/LiberationSans-Bold.ttf",
+    "font_size": 24,
+    "background_color": "#000000",
+    "text_color": "#FFFFFF",
+    "negative_coords_color_enabled": true,
+    "negative_coords_color": "#BA6669",
+    "portal_nether_color_enabled": true,
+    "portal_nether_color": "#FFA500",
+    "text_order": [
+        "nether_coords",
+        "certainty_percentage",
+        "distance",
+        "overworld_coords",
+        "angle"
+    ],
+    "text_enabled": {
+        "overworld_coords": true,
+        "certainty_percentage": true,
+        "distance": true,
+        "nether_coords": true,
+        "angle": true
+    },
+    "text_header": {
+        "overworld_coords": "Text",
+        "certainty_percentage": "Text",
+        "distance": "Text",
+        "nether_coords": "Text",
+        "angle": "Text"
+    },
+    "debug_mode": false,
+    "idle_api_polling_rate": 0.2,
+    "max_api_polling_rate": 0.05
+}
