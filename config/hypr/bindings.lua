@@ -35,9 +35,9 @@ hl.bind(mainMod .. " + SHIFT + CTRL + G",
 -- --- Window Resizing ---
 local resizeUnit = 30
 hl.bind(mainMod .. " + SHIFT + ALT + right", hl.dsp.window.resize({ x = resizeUnit, y = 0, relative = true }))
-hl.bind(mainMod .. " + SHIFT + ALT + left",  hl.dsp.window.resize({ x = -resizeUnit, y = 0, relative = true }))
-hl.bind(mainMod .. " + SHIFT + ALT + up",    hl.dsp.window.resize({ x = 0, y = -resizeUnit, relative = true }))
-hl.bind(mainMod .. " + SHIFT + ALT + down",  hl.dsp.window.resize({ x = 0, y = resize
+hl.bind(mainMod .. " + SHIFT + ALT + left", hl.dsp.window.resize({ x = -resizeUnit, y = 0, relative = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + up", hl.dsp.window.resize({ x = 0, y = -resizeUnit, relative = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + down", hl.dsp.window.resize({ x = 0, y = resizeUnit, relative = true }))
 
 -- === Universal Clipboard (sendshortcut) ===[cite: 12]
 hl.bind(mainMod .. " + C", hl.dsp.sendshortcut("CTRL", "Insert", "activewindow"))

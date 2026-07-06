@@ -1,59 +1,59 @@
 hl.config({
   general = {
-    layout = "dwindle",                             --[cite: 16]
-    gaps_in = 2,                                    --[cite: 16]
-    gaps_out = 4,                                   --[cite: 16]
-    border_size = 1,                                --[cite: 16]
-    ["col.active_border"] = "rgba(2E3134FF)",       --[cite: 16]
-    ["col.inactive_border"] = "rgba(101010FF)",     --[cite: 16]
-    resize_on_border = false,                       --[cite: 10]
-    allow_tearing = false                           --[cite: 10]
+    layout = "dwindle",                         --[cite: 16]
+    gaps_in = 2,                                --[cite: 16]
+    gaps_out = 4,                               --[cite: 16]
+    border_size = 1,                            --[cite: 16]
+    ["col.active_border"] = "rgba(2E3134FF)",   --[cite: 16]
+    ["col.inactive_border"] = "rgba(101010FF)", --[cite: 16]
+    resize_on_border = false,                   --[cite: 10]
+    allow_tearing = false                       --[cite: 10]
   },
   decoration = {
-    rounding = 6,                    --[cite: 16]
-    dim_special = 0.0,               --[cite: 16]
-    active_opacity = 1.0,            --[cite: 16]
-    inactive_opacity = 0.85,         --[cite: 16]
+    rounding = 6,              --[cite: 16]
+    dim_special = 0.0,         --[cite: 16]
+    active_opacity = 1.0,      --[cite: 16]
+    inactive_opacity = 0.85,   --[cite: 16]
     shadow = {
-      enabled = true,                --[cite: 10]
-      range = 2,                     --[cite: 10]
-      render_power = 3,              --[cite: 10]
-      color = "rgba(1a1a1aee)"       --[cite: 10]
+      enabled = true,          --[cite: 10]
+      range = 2,               --[cite: 10]
+      render_power = 3,        --[cite: 10]
+      color = "rgba(1a1a1aee)" --[cite: 10]
     },
     blur = {
-      enabled = true,                 --[cite: 16]
-      size = 8,                       --[cite: 16]
-      passes = 1,                     --[cite: 16]
-      new_optimizations = true,       --[cite: 16]
-      xray = false,                   --[cite: 16]
-      contrast = 0.7,                 --[cite: 16]
-      brightness = 0.5,               --[cite: 16]
-      noise = 0.1,                    --[cite: 16]
-      vibrancy = 0.1696,              --[cite: 16]
-      vibrancy_darkness = 0.0,        --[cite: 16]
-      special = true                  --[cite: 16]
+      enabled = true,           --[cite: 16]
+      size = 8,                 --[cite: 16]
+      passes = 1,               --[cite: 16]
+      new_optimizations = true, --[cite: 16]
+      xray = false,             --[cite: 16]
+      contrast = 0.7,           --[cite: 16]
+      brightness = 0.5,         --[cite: 16]
+      noise = 0.1,              --[cite: 16]
+      vibrancy = 0.1696,        --[cite: 16]
+      vibrancy_darkness = 0.0,  --[cite: 16]
+      special = true            --[cite: 16]
     }
   },
   group = {
-    ["col.border_active"] = "rgba(2E3134FF)",             --[cite: 16]
-    ["col.border_inactive"] = "rgba(101010FF)",           --[cite: 16]
+    ["col.border_active"] = "rgba(2E3134FF)",       --[cite: 16]
+    ["col.border_inactive"] = "rgba(101010FF)",     --[cite: 16]
     groupbar = {
-      font_family = "JetBrainsMono Nerd Font Mono",       --[cite: 16]
-      font_size = 10,                                     --[cite: 16]
-      height = 30,                                        --[cite: 16]
-      text_offset = -1,                                   --[cite: 16]
-      indicator_gap = 1,                                  --[cite: 16]
-      indicator_height = 1,                               --[cite: 16]
-      ["col.active"] = "rgba(6E7378ff)",                  --[cite: 16]
-      ["col.inactive"] = "rgba(191919FF)",                --[cite: 16]
-      text_color = "rgba(e7e9eaff)",                      --[cite: 16]
-      text_color_inactive = "rgba(6E7378ff)",             --[cite: 16]
-      gaps_in = 0,                                        --[cite: 16]
-      gaps_out = 0                                        --[cite: 16]
+      font_family = "JetBrainsMono Nerd Font Mono", --[cite: 16]
+      font_size = 10,                               --[cite: 16]
+      height = 30,                                  --[cite: 16]
+      text_offset = -1,                             --[cite: 16]
+      indicator_gap = 1,                            --[cite: 16]
+      indicator_height = 1,                         --[cite: 16]
+      ["col.active"] = "rgba(6E7378ff)",            --[cite: 16]
+      ["col.inactive"] = "rgba(191919FF)",          --[cite: 16]
+      text_color = "rgba(e7e9eaff)",                --[cite: 16]
+      text_color_inactive = "rgba(6E7378ff)",       --[cite: 16]
+      gaps_in = 0,                                  --[cite: 16]
+      gaps_out = 0                                  --[cite: 16]
     }
   },
   animations = {
-    enabled = true,     --[cite: 10]
+    enabled = true, --[cite: 10]
     -- Define Beziers[cite: 10]
     bezier = {
       "easeOutQuint,0.23,1,0.32,1",
@@ -82,23 +82,23 @@ hl.config({
     }
   },
   dwindle = {
-    preserve_split = true,     --[cite: 10]
-    force_split = 2            --[cite: 10]
+    preserve_split = true, --[cite: 10]
+    force_split = 2        --[cite: 10]
   },
   misc = {
-    disable_hyprland_logo = true,          --[cite: 10]
-    disable_splash_rendering = true,       --[cite: 10]
-    disable_scale_notification = true,     --[cite: 10]
-    focus_on_activate = true,              --[cite: 10]
-    key_press_enables_dpms = true,         --[cite: 9]
-    mouse_move_enables_dpms = true         --[cite: 9]
+    disable_hyprland_logo = true,      --[cite: 10]
+    disable_splash_rendering = true,   --[cite: 10]
+    disable_scale_notification = true, --[cite: 10]
+    focus_on_activate = true,          --[cite: 10]
+    key_press_enables_dpms = true,     --[cite: 9]
+    mouse_move_enables_dpms = true     --[cite: 9]
   },
   cursor = {
-    hide_on_key_press = true,        --[cite: 10]
-    warp_on_change_workspace = 1     --[cite: 10]
+    hide_on_key_press = true,    --[cite: 10]
+    warp_on_change_workspace = 1 --[cite: 10]
   },
   binds = {
-    hide_special_on_workspace_change = true     --[cite: 10]
+    hide_special_on_workspace_change = true --[cite: 10]
   }
 })
 
@@ -106,6 +106,3 @@ hl.config({
 hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { class = ".*" }, tag = "+default-opacity" })
 hl.window_rule({ match = { tag = "default-opacity" }, opacity = "0.97 0.9" })
--- XWayland Dragging Fix[cite: 11]
-hl.window_rule({ match = { class = "^$", title = "^$", xwayland = 1, float = 1, fullscreen = 0, pin = 0 }, no_focus =
-"on" })
