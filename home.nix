@@ -9,7 +9,7 @@ let
     walker = "walker";
     elephant = "elephant";
     ghostty = "ghostty";
-    NBTrackr = "NBTrackr"
+    NBTrackr = "NBTrackr";
     waywall = "waywall";
     millennium = "millennium";
 
