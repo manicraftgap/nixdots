@@ -1,9 +1,8 @@
 -- ~/.config/hypr/bindings.lua
-local terminal = "ghostty"
-local mainMod  = "SUPER"
+local mainMod = "SUPER"
 
 -- --- Application Bindings ---
-hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd("ghostty"))
 hl.bind(mainMod .. " + ALT + RETURN", hl.dsp.exec_cmd("uwsm-app -- xdg-terminal-exec tmux new"))
 
 -- Web Browser
