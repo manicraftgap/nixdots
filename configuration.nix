@@ -86,6 +86,7 @@
      gnome-calculator
      signal-desktop
      nautilus
+     tmux
   ];
   
   fonts.packages = with pkgs; [

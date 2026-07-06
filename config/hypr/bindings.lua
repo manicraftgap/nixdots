@@ -67,18 +67,18 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
 
 -- === Window Management & Tiling ===
 hl.bind(mainMod .. " + W", hl.dsp.window.close())
-hl.bind(mainMod .. " + J", hl.dsp.toggle_split())
+hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = 0 }))
-hl.bind(mainMod .. " + CTRL + F", hl.dsp.window.fullscreen({ mode = 2 }))
-hl.bind(mainMod .. " + ALT + F", hl.dsp.window.fullscreen({ mode = 1 }))
+hl.bind(mainMod .. " + F", hl.dsp.fullscreen("0"))
+hl.bind(mainMod .. " + CTRL + F", hl.dsp.fullscreen("2"))
+hl.bind(mainMod .. " + ALT + F", hl.dsp.fullscreen("1"))
 
 -- Focus
-hl.bind(mainMod .. " + LEFT", hl.dsp.window.move_focus("l"))
-hl.bind(mainMod .. " + RIGHT", hl.dsp.window.move_focus("r"))
-hl.bind(mainMod .. " + UP", hl.dsp.window.move_focus("u"))
-hl.bind(mainMod .. " + DOWN", hl.dsp.window.move_focus("d"))
+hl.bind(mainMod .. " + LEFT", hl.dsp.movefocus("l"))
+hl.bind(mainMod .. " + RIGHT", hl.dsp.movefocus("r"))
+hl.bind(mainMod .. " + UP", hl.dsp.movefocus("u"))
+hl.bind(mainMod .. " + DOWN", hl.dsp.movefocus("d"))
 
 -- Workspaces (1-10)
 for i = 1, 9 do
@@ -116,8 +116,8 @@ hl.bind(mainMod .. " + ALT + TAB", hl.dsp.group.change_active("f"))
 hl.bind(mainMod .. " + ALT + SHIFT + TAB", hl.dsp.group.change_active("b"))
 
 -- Move/Resize with Mouse
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.move(), { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mainMod .. " + mouse:272", "movewindow", { mouse = true })
+hl.bind(mainMod .. " + mouse:273", "resizewindow", { mouse = true })
 
 -- === Utilities & Walkers ===
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("walker"))
