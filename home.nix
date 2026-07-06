@@ -12,7 +12,7 @@ let
     NBTrackr = "NBTrackr";
     waywall = "waywall";
     millennium = "millennium";
-
+    hypr = "hypr";
 
 
   };

@@ -33,10 +33,11 @@ hl.bind(mainMod .. " + SHIFT + CTRL + G",
   hl.dsp.exec_cmd([[uwsm-app -- xdg-open "https://messages.google.com/web/conversations"]]))
 
 -- --- Window Resizing ---
-hl.bind(mainMod .. " + SHIFT + ALT + right", hl.dsp.resizeactive("30 0"))
-hl.bind(mainMod .. " + SHIFT + ALT + left", hl.dsp.resizeactive("-30 0"))
-hl.bind(mainMod .. " + SHIFT + ALT + up", hl.dsp.resizeactive("0 -30"))
-hl.bind(mainMod .. " + SHIFT + ALT + down", hl.dsp.resizeactive("0 30"))
+local resizeUnit = 30
+hl.bind(mainMod .. " + SHIFT + ALT + right", hl.dsp.window.resize({ x = resizeUnit, y = 0, relative = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + left",  hl.dsp.window.resize({ x = -resizeUnit, y = 0, relative = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + up",    hl.dsp.window.resize({ x = 0, y = -resizeUnit, relative = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + down",  hl.dsp.window.resize({ x = 0, y = resize
 
 -- === Universal Clipboard (sendshortcut) ===[cite: 12]
 hl.bind(mainMod .. " + C", hl.dsp.sendshortcut("CTRL", "Insert", "activewindow"))
