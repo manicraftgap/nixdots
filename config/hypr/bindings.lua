@@ -39,10 +39,10 @@ hl.bind(mainMod .. " + SHIFT + ALT + left", hl.dsp.window.resize({ x = -resizeUn
 hl.bind(mainMod .. " + SHIFT + ALT + up", hl.dsp.window.resize({ x = 0, y = -resizeUnit, relative = true }))
 hl.bind(mainMod .. " + SHIFT + ALT + down", hl.dsp.window.resize({ x = 0, y = resizeUnit, relative = true }))
 
--- === Universal Clipboard (sendshortcut) ===[cite: 12]
-hl.bind(mainMod .. " + C", hl.dsp.sendshortcut("CTRL", "Insert", "activewindow"))
-hl.bind(mainMod .. " + V", hl.dsp.sendshortcut("SHIFT", "Insert", "activewindow"))
-hl.bind(mainMod .. " + X", hl.dsp.sendshortcut("CTRL", "X", "activewindow"))
+-- === Universal Clipboard (send_shortcut) ===
+hl.bind(mainMod .. " + C", hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert", window = "activewindow" }))
+hl.bind(mainMod .. " + V", hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert", window = "activewindow" }))
+hl.bind(mainMod .. " + X", hl.dsp.send_shortcut({ mods = "CTRL", key = "X", window = "activewindow" }))
 hl.bind(mainMod .. " + CTRL + V", hl.dsp.exec_cmd("walker -m clipboard"))
 
 -- === Media & Brightness (Native replacements for omarchy scripts) ===[cite: 13]
