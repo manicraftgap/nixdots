@@ -70,50 +70,53 @@ hl.bind(mainMod .. " + W", hl.dsp.window.close())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + F", hl.dsp.fullscreen("0"))
-hl.bind(mainMod .. " + CTRL + F", hl.dsp.fullscreen("2"))
-hl.bind(mainMod .. " + ALT + F", hl.dsp.fullscreen("1"))
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
+hl.bind(mainMod .. " + CTRL + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+hl.bind(mainMod .. " + ALT + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 
 -- Focus
-hl.bind(mainMod .. " + LEFT", hl.dsp.movefocus("l"))
-hl.bind(mainMod .. " + RIGHT", hl.dsp.movefocus("r"))
-hl.bind(mainMod .. " + UP", hl.dsp.movefocus("u"))
-hl.bind(mainMod .. " + DOWN", hl.dsp.movefocus("d"))
+hl.bind(mainMod .. " + LEFT", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + RIGHT", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + UP", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + DOWN", hl.dsp.focus({ direction = "down" }))
 
 -- Workspaces (1-10)
 for i = 1, 9 do
-  hl.bind(mainMod .. " + " .. i, hl.dsp.workspace(tostring(i)))
-  hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move_to_workspace(tostring(i)))
-  hl.bind(mainMod .. " + SHIFT + ALT + " .. i, hl.dsp.window.move_to_workspace_silent(tostring(i)))
+  local ws = tostring(i)
+  hl.bind(mainMod .. " + " .. ws, hl.dsp.focus({ workspace = ws }))
+  hl.bind(mainMod .. " + SHIFT + " .. ws, hl.dsp.window.move({ workspace = ws, follow = true }))
+  hl.bind(mainMod .. " + SHIFT + ALT + " .. ws, hl.dsp.window.move({ workspace = ws, follow = false }))
 end
-hl.bind(mainMod .. " + 0", hl.dsp.workspace("10"))
-hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move_to_workspace("10"))
-hl.bind(mainMod .. " + SHIFT + ALT + 0", hl.dsp.window.move_to_workspace_silent("10"))
+
+-- Workspace 10 (0 Keybind)
+hl.bind(mainMod .. " + 0", hl.dsp.focus({ workspace = "10" }))
+hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = "10", follow = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + 0", hl.dsp.window.move({ workspace = "10", follow = false }))
 
 -- Scratchpad
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("scratchpad"))
-hl.bind(mainMod .. " + ALT + S", hl.dsp.window.move_to_workspace_silent("special:scratchpad"))
+hl.bind(mainMod .. " + ALT + S", hl.dsp.window.move({ workspace = "special:scratchpad", follow = false }))
 
 -- Workspace Cycling
-hl.bind(mainMod .. " + TAB", hl.dsp.workspace("e+1"))
-hl.bind(mainMod .. " + SHIFT + TAB", hl.dsp.workspace("e-1"))
-hl.bind(mainMod .. " + CTRL + TAB", hl.dsp.workspace("previous"))
+hl.bind(mainMod .. " + TAB", hl.dsp.focus({ workspace = "+1" }))
+hl.bind(mainMod .. " + SHIFT + TAB", hl.dsp.focus({ workspace = "-1" }))
+hl.bind(mainMod .. " + CTRL + TAB", hl.dsp.focus({ workspace = "previous" }))
 
 -- Swap Windows
-hl.bind(mainMod .. " + SHIFT + LEFT", hl.dsp.window.swap("l"))
-hl.bind(mainMod .. " + SHIFT + RIGHT", hl.dsp.window.swap("r"))
-hl.bind(mainMod .. " + SHIFT + UP", hl.dsp.window.swap("u"))
-hl.bind(mainMod .. " + SHIFT + DOWN", hl.dsp.window.swap("d"))
+hl.bind(mainMod .. " + SHIFT + LEFT", hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + RIGHT", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + UP", hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + DOWN", hl.dsp.window.swap({ direction = "down" }))
 
 -- Window Grouping
 hl.bind(mainMod .. " + G", hl.dsp.group.toggle())
-hl.bind(mainMod .. " + ALT + G", hl.dsp.group.move_out())
-hl.bind(mainMod .. " + ALT + LEFT", hl.dsp.group.move_in("l"))
-hl.bind(mainMod .. " + ALT + RIGHT", hl.dsp.group.move_in("r"))
-hl.bind(mainMod .. " + ALT + UP", hl.dsp.group.move_in("u"))
-hl.bind(mainMod .. " + ALT + DOWN", hl.dsp.group.move_in("d"))
-hl.bind(mainMod .. " + ALT + TAB", hl.dsp.group.change_active("f"))
-hl.bind(mainMod .. " + ALT + SHIFT + TAB", hl.dsp.group.change_active("b"))
+hl.bind(mainMod .. " + ALT + G", hl.dsp.window.move({ out_of_group = true }))
+hl.bind(mainMod .. " + ALT + LEFT", hl.dsp.window.move({ into_group = "left" }))
+hl.bind(mainMod .. " + ALT + RIGHT", hl.dsp.window.move({ into_group = "right" }))
+hl.bind(mainMod .. " + ALT + UP", hl.dsp.window.move({ into_group = "up" }))
+hl.bind(mainMod .. " + ALT + DOWN", hl.dsp.window.move({ into_group = "down" }))
+hl.bind(mainMod .. " + ALT + TAB", hl.dsp.group.active("f"))
+hl.bind(mainMod .. " + ALT + SHIFT + TAB", hl.dsp.group.active("b"))
 
 -- Move/Resize with Mouse
 hl.bind(mainMod .. " + mouse:272", "movewindow", { mouse = true })
