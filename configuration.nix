@@ -73,7 +73,19 @@
      walker
      elephant
      zoxide
-
+     wireplumber
+     brightnessctl
+     playerctl
+     grim
+     slurp
+     wl-clipboard
+     mako
+     hyprpicker
+     jq
+     uwsm
+     gnome-calculator
+     signal-desktop
+     nautilus
   ];
   
   fonts.packages = with pkgs; [
