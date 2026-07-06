@@ -1,9 +1,8 @@
--- ~ / .config/hypr/monitors.lua
+-- ~/.config/hypr/monitors.lua
 
--- Optimized for retina-class 2x displays
 hl.monitor({
-  name = "",   -- Empty string implies fallback/all monitors (e.g., monitor=,preferred,auto,auto)
-  resolution = "preferred",
+  output = "all",   -- Explicitly matches any/all connected monitors
+  mode = "preferred",
   position = "auto",
   scale = "auto"
 })
