@@ -5,7 +5,7 @@
   "spacing": 0,
   "height": 26,
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock",  "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator"],
+  "modules-center": ["clock"],
   "modules-right": [
     "group/tray-expander",
     "bluetooth",
@@ -43,8 +43,8 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "ghostty -e btop",
-    "on-click-right": "ghostty -e nitch"
+    "on-click": "ghostty --title=btop -e btop"[cite: 3],
+    "on-click-right": "ghostty --title=fastfetch -e fastfetch"[cite: 3]
   },
   "clock": {
     "format": " {:%I:%M %p}",
@@ -63,7 +63,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "ghostty -e impala"
+    "on-click": "ghostty --title=impala -e impala"[cite: 3]
   },
   "battery": {
     "format": "{capacity}% {icon}",
@@ -78,7 +78,8 @@
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "interval": 5,
-    "on-click": "omarchy-menu power",
+    "on-click": "profile=$(powerprofilesctl list | awk '/^[\\s* ]*[a-zA-Z0-9\\-]+:$/ { gsub(/^[*[:space:]]+|:$/, \"\"); print }' | walker --dmenu -p 'Power Profile…') && [ -n \"$profile\" ] && powerprofilesctl set \"$profile\"",
+    "on-click-right": "notify-send -u low \"Battery Status\" \"$(powerprofilesctl get) profile active\"",
     "states": {
       "warning": 20,
       "critical": 10
@@ -91,11 +92,11 @@
     "format-connected": "󰂱",
     "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "ghostty -e  bluetui"
+    "on-click": "ghostty --title=bluetui -e bluetui"[cite: 3]
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "ghostty -e wiremix",
+    "on-click": "ghostty --title=wiremix -e wiremix"[cite: 3]
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,

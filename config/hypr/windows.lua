@@ -106,3 +106,18 @@ hl.config({
 hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { class = ".*" }, tag = "+default-opacity" })
 hl.window_rule({ match = { tag = "default-opacity" }, opacity = "0.97 0.9" })
+
+-- Make specific terminal tools float, center, and resize cleanly
+hl.window_rule({
+  match = { title = "^(impala|bluetui|wiremix)$" },
+  float = 1,
+  size = "800 500",
+  center = 1
+})
+
+hl.window_rule({
+  match = { title = "^(fastfetch)$" },
+  float = 1,
+  size = "700 600",
+  center = 1
+})
