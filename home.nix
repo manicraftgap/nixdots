@@ -13,7 +13,10 @@ let
     waywall = "waywall";
     millennium = "millennium";
     hypr = "hypr";
-
+    btop = "btop";
+    mako = "mako";
+    swaybg = "swaybg";
+    swayosd = "swayosd";
 
   };
 in
