@@ -33,6 +33,9 @@ in
       vim = "nvim";
     };
     initExtra = ''
+    if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+      . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    fi
       export PS1='\[\e[38;5;76m\]\u\[\e[0m\] in \[\e[38;5;32m\]\w\[\e[0m\] \\$ '
       nitch
     gcm() {
@@ -51,7 +54,7 @@ in
       enable = true;
       enableBashIntegration = true;
       options = [ "--cmd cd" ];
-    }
+    };
 
   xdg.configFile = builtins.mapAttrs
     (name: subpath: {
