@@ -47,6 +47,12 @@ in
     '';
   };
 
+  programs.zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      options = [ "--cmd cd" ];
+    }
+
   xdg.configFile = builtins.mapAttrs
     (name: subpath: {
       source = create_symlink "${dotfiles}/${subpath}";
