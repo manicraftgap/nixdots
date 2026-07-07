@@ -44,7 +44,7 @@
     "interval": 5,
     "format": "󰍛",
     "on-click": "ghostty --title=btop -e btop"[cite: 3],
-    "on-click-right": "ghostty --title=fastfetch -e fastfetch"[cite: 3]
+    "on-click-right": "ghostty --title=fastfetch -e fastfetch"[cite: 3],
   },
   "clock": {
     "format": " {:%I:%M %p}",
@@ -63,7 +63,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "ghostty --title=impala -e impala"[cite: 3]
+    "on-click": "ghostty --title=impala -e impala"[cite: 3],
   },
   "battery": {
     "format": "{capacity}% {icon}",
@@ -92,11 +92,11 @@
     "format-connected": "󰂱",
     "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "ghostty --title=bluetui -e bluetui"[cite: 3]
+    "on-click": "ghostty --title=bluetui -e bluetui"[cite: 3],
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "ghostty --title=wiremix -e wiremix"[cite: 3]
+    "on-click": "ghostty --title=wiremix -e wiremix"[cite: 3],
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
