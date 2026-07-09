@@ -88,7 +88,11 @@
      nautilus
      tmux
   ];
-  
+
+  environment.variables = {
+      EDITOR = "nvim";
+  };
+
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
