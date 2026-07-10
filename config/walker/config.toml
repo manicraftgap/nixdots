@@ -8,7 +8,7 @@ hide_action_hints = true                                                    # gl
 "default" = { input = " Search...", list = "No Results" } # placeholders for input and empty list, key is the providers name, so f.e. "desktopapplications" or "menus:other"
 
 [keybinds]
-quick_activate = ["F1", "F2", "F3", "F4",]
+quick_activate = ["F1", "F2", "F3", "F4", "F5", "F6"]
 
 [columns]
 symbols = 1 # providers to be queried by default
@@ -43,3 +43,7 @@ provider = "websearch"
 [[providers.prefixes]]
 prefix = "$"
 provider = "clipboard"
+
+[[emergencies]]
+text = "Restart Walker"
+command = "omarchy-restart-walker"

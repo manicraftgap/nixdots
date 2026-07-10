@@ -19,9 +19,6 @@ hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("uwsm-app -- flatpak run com.
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("uwsm-app -- xdg-terminal-exec lazydocker"))
 hl.bind(mainMod .. " + SHIFT + G", hl.dsp.exec_cmd("uwsm-app -- signal-desktop"))
 
--- --- Screenshots ---
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("grim -g '$(slurp)' - | wl-copy"))
-
 -- --- Web Applications ---
 hl.bind(mainMod .. " + SHIFT + ALT + A", hl.dsp.exec_cmd([[uwsm-app -- xdg-open "https://chatgpt.com"]]))
 hl.bind(mainMod .. " + SHIFT + A", hl.dsp.exec_cmd([[uwsm-app -- xdg-open "https://perplexity.ai"]]))
@@ -64,18 +61,6 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
-
--- Hyprsunset Toggle (SUPER + CTRL + N)
-hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd([[
-  if ! pgrep -x hyprsunset >/dev/null; then setsid uwsm-app -- hyprsunset & sleep 0.5; fi [source: 2]
-  CURRENT_TEMP=$(hyprctl hyprsunset temperature 2>/dev/null | grep -oE '[0-9]+')
-  if [ "$CURRENT_TEMP" = "6000" ] || [ -z "$CURRENT_TEMP" ]; then [source: 3]
-    hyprctl hyprsunset temperature 4000 && notify-send -u low "  Nightlight screen temperature" [source: 4]
-  else
-    hyprctl hyprsunset temperature 6000 && notify-send -u low "   Daylight screen temperature" [source: 4]
-  fi
-  if grep -q "custom/nightlight" ~/.config/waybar/config.jsonc; then pkill -SIGUSR2 waybar; fi [source: 2, 3]
-]]))
 
 -- === Window Management & Tiling ===
 hl.bind(mainMod .. " + W", hl.dsp.window.close())
@@ -137,11 +122,67 @@ hl.bind(mainMod .. " + mouse:273", function() hl.dsp.window.resize() end, { mous
 -- === Utilities & Walkers ===
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind(mainMod .. " + CTRL + E", hl.dsp.exec_cmd("walker -m symbols"))
-hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("killall waybar || waybar"))
 hl.bind("XF86Calculator", hl.dsp.exec_cmd("gnome-calculator"))
 
--- Screenshots / Captures
-hl.bind("PRINT", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
+-- Waybar Toggle (Inlined script logic)
+hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd([[
+  if pgrep -x waybar >/dev/null; then
+    pkill -x waybar
+  else
+    uwsm-app -- waybar >/dev/null 2>&1 &
+  fi
+]]))
+
+-- Keybindings Helper (Inlined parser + walker dmenu launcher)
+hl.bind(mainMod .. " + K", hl.dsp.exec_cmd([[
+  HEIGHT=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .height')
+  MENU_HEIGHT=$((HEIGHT * 40 / 100))
+  
+  hyprctl -j binds | jq -r '.[] | {modmask, key, keycode, description, dispatcher, arg} | "\(.modmask),\(.key)@\(.keycode),\(.description),\(.dispatcher),\(.arg)"' | sed -r \
+    -e 's/null//' -e 's,uwsm app -- ,,' -e 's,uwsm-app -- ,,' -e 's/@0//' -e 's/,@/,code:/' -e 's/^0,/,/' -e 's/^1,/SHIFT,/' -e 's/^4,/CTRL,/' -e 's/^5,/SHIFT CTRL,/' -e 's/^8,/ALT,/' -e 's/^9,/SHIFT ALT,/' -e 's/^12,/CTRL ALT,/' -e 's/^13,/SHIFT CTRL ALT,/' -e 's/^64,/SUPER,/' -e 's/^65,/SUPER SHIFT,/' -e 's/^68,/SUPER CTRL,/' -e 's/^69,/SUPER SHIFT CTRL,/' -e 's/^72,/SUPER ALT,/' -e 's/^73,/SUPER SHIFT ALT,/' -e 's/^76,/SUPER CTRL ALT,/' -e 's/^77,/SUPER SHIFT CTRL ALT,/' | \
+  awk -F, '{
+    combo = $1 " + " $2; gsub(/^[ \t]*\+?[ \t]*/, "", combo); gsub(/[ \t]+$/, "", combo);
+    act = $3; if (act == "") { for (i = 4; i <= NF; i++) act = act $i (i < NF ? "," : ""); sub(/,$/, "", act); gsub(/(^|,)[[:space:]]*exec[[:space:]]*,?/, "", act); gsub(/^[ \t]+|[ \t]+$/, "", act); gsub(/[ \t]+/, " ", combo); }
+    if (act != "") printf "%-35s → %s\n", combo, act
+  }' | sort -u | walker --dmenu -p 'Keybindings' --width 800 --height "$MENU_HEIGHT"
+]]))
+
+-- Aesthetics & Screen Control (Inlined Nightlight toggle logic)
+hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd([[
+  if ! pgrep -x hyprsunset >/dev/null; then
+    setsid uwsm-app -- hyprsunset & sleep 0.5
+  fi
+  TEMP=$(hyprctl hyprsunset temperature 2>/dev/null | grep -oE '[0-9]+')
+  if [ "$TEMP" = "6000" ] || [ -z "$TEMP" ]; then
+    hyprctl hyprsunset temperature 4000 && notify-send -u low "  Nightlight screen temperature"
+  else
+    hyprctl hyprsunset temperature 6000 && notify-send -u low "   Daylight screen temperature"
+  fi
+]]))
+
+-- Screenshots / Captures (Self-contained pipeline replacing script logic)
+local screenshot_cmd = [[
+  DIR="$HOME/Pictures"
+  mkdir -p "$DIR"
+  pkill slurp && exit 0
+  
+  WS=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .activeWorkspace.id')
+  RECTS=$( (hyprctl monitors -j | jq -r --arg ws "$WS" '.[] | select(.activeWorkspace.id == ($ws | tonumber)) | "\(.x),\(.y) \((.width / .scale | floor))x\((.height / .scale | floor))"'; hyprctl clients -j | jq -r --arg ws "$WS" '.[] | select(.workspace.id == ($ws | tonumber)) | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"') )
+  
+  hyprpicker -r -z >/dev/null 2>&1 & PICKER_PID=$!
+  sleep .1
+  SELECTION=$(echo "$RECTS" | slurp 2>/dev/null)
+  kill $PICKER_PID 2>/dev/null
+  
+  if [ -n "$SELECTION" ]; then
+    FILE="$DIR/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png"
+    grim -g "$SELECTION" "$FILE" && wl-copy < "$FILE"
+    notify-send "Screenshot saved to clipboard and file" "Saved inside: ~/Pictures" -t 4000 -i "$FILE"
+  fi
+]]
+
+hl.bind("PRINT", hl.dsp.exec_cmd(screenshot_cmd))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(screenshot_cmd))
 hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("pkill hyprpicker || hyprpicker -a"))
 
 -- Notifications (Mako)
@@ -153,4 +194,7 @@ hl.bind(mainMod .. " + SHIFT + ALT + COMMA", hl.dsp.exec_cmd("makoctl restore"))
 -- Zoom
 hl.bind(mainMod .. " + CTRL + Z",
   hl.dsp.exec_cmd("hyprctl keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float + 1')"))
-hl.bind(mainMod .. " + CTRL + ALT + Z", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + CTRL + ALT + Z", hl.dsp.exec_cmd("hyprctl keyword cursor:zoom_factor 1"))
+
+-- Lock System
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
