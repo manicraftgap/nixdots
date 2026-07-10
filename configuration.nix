@@ -87,6 +87,7 @@
      signal-desktop
      nautilus
      tmux
+     libnotify
   ];
 
   environment.variables = {

@@ -65,16 +65,21 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
 
--- Hyprsunset Toggle (SUPER + CTRL + N)
+-- Hyprsunset Toggle --
 hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd([[
-  if ! pgrep -x hyprsunset >/dev/null; then setsid uwsm-app -- hyprsunset & sleep 0.5; fi [source: 2]
-  CURRENT_TEMP=$(hyprctl hyprsunset temperature 2>/dev/null | grep -oE '[0-9]+')
-  if [ "$CURRENT_TEMP" = "6000" ] || [ -z "$CURRENT_TEMP" ]; then [source: 3]
-    hyprctl hyprsunset temperature 4000 && notify-send -u low "  Nightlight screen temperature" [source: 4]
+  export PATH=$PATH:/run/current-system/sw/bin:$HOME/.nix-profile/bin
+
+  if pgrep -x hyprsunset >/dev/null; then
+    pkill -x hyprsunset
+    notify-send -u low "   Daylight screen temperature"
   else
-    hyprctl hyprsunset temperature 6000 && notify-send -u low "   Daylight screen temperature" [source: 4]
+    hyprsunset -t 4000 &
+    notify-send -u low "  Nightlight screen temperature"
   fi
-  if grep -q "custom/nightlight" ~/.config/waybar/config.jsonc; then pkill -SIGUSR2 waybar; fi [source: 2, 3]
+
+  if grep -q "custom/nightlight" ~/.config/waybar/config.jsonc; then
+    pkill -SIGUSR2 waybar
+  fi
 ]]))
 
 -- === Window Management & Tiling ===
