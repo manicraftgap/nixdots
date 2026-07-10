@@ -4,6 +4,11 @@ local mainMod = "SUPER"
 -- --- Application Bindings ---
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd("ghostty"))
 hl.bind(mainMod .. " + ALT + RETURN", hl.dsp.exec_cmd("uwsm-app -- xdg-terminal-exec tmux new"))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("uwsm-app -- hyprlock"))
+hl.bind(mainMod .. " + CTRL + A", hl.dsp.exec_cmd("ghostty --title=wiremix -e wiremix"))
+hl.bind(mainMod .. " + CTRL + B", hl.dsp.exec_cmd("ghostty --title=bluetui -e bluetui"))
+hl.bind(mainMod .. " + CTRL + W", hl.dsp.exec_cmd("ghostty --title=impala -e impala"))
+hl.bind(mainMod .. " + CTRL + T", hl.dsp.exec_cmd("ghostty --title=btop -e btop"))
 
 -- Web Browser
 hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd("uwsm-app -- xdg-open 'https://'"))
