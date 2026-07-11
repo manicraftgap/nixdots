@@ -141,8 +141,8 @@ hl.bind(mainMod .. " + ALT + TAB", hl.dsp.group.active({ index = 1 }))
 hl.bind(mainMod .. " + ALT + SHIFT + TAB", hl.dsp.group.active({ index = -1 }))
 
 -- Move/Resize with Mouse
-hl.bind(mainMod .. " + mouse:272", function() hl.dsp.window.move() end, { mouse = true })
-hl.bind(mainMod .. " + mouse:273", function() hl.dsp.window.resize() end, { mouse = true })
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.move_drag(), { mouse = true })
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize_drag(), { mouse = true })
 
 -- === Utilities & Walkers ===
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("walker"))
