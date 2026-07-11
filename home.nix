@@ -41,6 +41,8 @@ in
     gcm() {
       rm -rf ~/nixos-dotfiles
       git clone https://github.com/manicraftgap/nixos-dotfiles ~/nixos-dotfiles
+      nrs
+      hyprctl reload
     }
     '';
     profileExtra = ''
