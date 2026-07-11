@@ -17,6 +17,7 @@ let
     mako = "mako";
     swaybg = "swaybg";
     swayosd = "swayosd";
+    yazi = "yazi";
 
   };
 in
