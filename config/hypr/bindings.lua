@@ -149,6 +149,8 @@ hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind(mainMod .. " + CTRL + E", hl.dsp.exec_cmd("walker -m symbols"))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("pkill -x waybar || waybar &"))
 hl.bind("XF86Calculator", hl.dsp.exec_cmd("gnome-calculator"))
+hl.bind("SUPER + CTRL + SPACE", hl.dsp.exec_cmd("walker --provider menus:backgroundSelector"))
+
 
 -- Screenshots / Captures
 hl.bind("PRINT", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
