@@ -147,7 +147,7 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 -- === Utilities & Walkers ===
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind(mainMod .. " + CTRL + E", hl.dsp.exec_cmd("walker -m symbols"))
-hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("killall waybar || waybar"))
+hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("pkill -x waybar || waybar &"))
 hl.bind("XF86Calculator", hl.dsp.exec_cmd("gnome-calculator"))
 
 -- Screenshots / Captures
