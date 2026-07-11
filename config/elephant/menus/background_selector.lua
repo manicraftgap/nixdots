@@ -25,17 +25,18 @@ end
 function GetEntries()
   local entries = {}
   local home = os.getenv("HOME")
-
-  -- The agnostic directory you want to use
   local wallpaper_dir = home .. "/.config/swaybg/backgrounds"
-
-  -- Track added files to avoid duplicates (safeguard)
   local seen = {}
 
+  local current_path = os.getenv("PATH") or ""
+  local nix_paths = "/run/current-system/sw/bin:" .. os.getenv("HOME") .. "/.nix-profile/bin"
+  local cmd_prefix = "PATH=" .. nix_paths .. ":" .. current_path .. " "
+
   local handle = io.popen(
-    "find -L " .. ShellEscape(wallpaper_dir)
+    cmd_prefix .. "find -L " .. ShellEscape(wallpaper_dir)
     ..
-    " -maxdepth 1 -type f \\( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' -o -name '*.gif' -o -name '*.bmp' -o -name '*.webp' \\) 2>/dev/null | sort"
+    " -maxdepth 1 -type f \\( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' -o -name '*.gif' -o -name '*.bmp' -o -name '*.webp' \\) 2>/dev/null | " ..
+    cmd_prefix .. "sort"
   )
 
   if handle then
@@ -47,8 +48,8 @@ function GetEntries()
           Text = FormatName(filename),
           Value = background,
           Actions = {
-            -- Ensures old swaybg instances are killed before drawing the new one
-            activate = "pkill swaybg; swaybg -i " .. ShellEscape(background) .. " -m fill &"
+            activate = cmd_prefix ..
+            "pkill swaybg; " .. cmd_prefix .. "swaybg -i " .. ShellEscape(background) .. " -m fill &"
           },
           Preview = background,
           PreviewType = "file",

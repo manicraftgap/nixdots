@@ -42,5 +42,6 @@
     tmux
     libnotify
     dragon-drop
+    findutils
   ];
 }
