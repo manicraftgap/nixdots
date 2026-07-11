@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./pkgs.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -46,50 +47,6 @@
   programs.hyprland.enable = true;
   programs.localsend.enable = true;
   hardware.bluetooth.enable = true;
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-     wget
-     btop
-     kitty
-     impala
-     neovim
-     unzip
-     fastfetch
-     bluetui
-     wiremix
-     ghostty
-     librewolf
-     waybar
-     waywall
-     prismlauncher
-     nitch
-     hyprlock
-     hyprsunset
-     hypridle
-     swaybg
-     git
-     clang
-     walker
-     elephant
-     zoxide
-     wireplumber
-     brightnessctl
-     playerctl
-     grim
-     slurp
-     wl-clipboard
-     mako
-     hyprpicker
-     jq
-     uwsm
-     gnome-calculator
-     signal-desktop
-     nautilus
-     tmux
-     libnotify
-  ];
-
   environment.variables = {
       EDITOR = "nvim";
   };

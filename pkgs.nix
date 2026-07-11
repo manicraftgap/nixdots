@@ -1,0 +1,46 @@
+{ config, pkgs, ... }:
+
+{
+  environment.systemPackages = with pkgs; [
+    wget
+    btop
+    kitty
+    impala
+    neovim
+    unzip
+    fastfetch
+    bluetui
+    wiremix
+    ghostty
+    librewolf
+    waybar
+    waywall
+    prismlauncher
+    nitch
+    hyprlock
+    hyprsunset
+    hypridle
+    swaybg
+    git
+    clang
+    walker
+    elephant
+    zoxide
+    wireplumber
+    brightnessctl
+    playerctl
+    grim
+    slurp
+    wl-clipboard
+    mako
+    hyprpicker
+    jq
+    uwsm
+    gnome-calculator
+    signal-desktop
+    nautilus
+    tmux
+    libnotify
+    dragon-drop
+  ];
+}
