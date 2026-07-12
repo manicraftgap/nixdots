@@ -14,6 +14,6 @@ hl.on("hyprland.start", function()
   -- Background System Processes
   hl.exec_cmd("uwsm-app -- hypridle")
   hl.exec_cmd("uwsm-app -- mako")
-  hl.exec_cmd("uwsm-app -- swaybg -i ~/.config/swaybg/current.png -m fill")
+  hl.exec_cmd("uwsm-app -- swaybg -i ~/.config/swaybg/current/current.png -m fill")
   hl.exec_cmd("uwsm-app -- hyprsunset")
 end)
