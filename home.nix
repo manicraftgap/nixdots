@@ -25,15 +25,7 @@ in
   home.username = "mani";
   home.homeDirectory = "/home/mani";
   home.stateVersion = "26.11";
-  programs.eza = {
-      enable = true;
-      icons = "auto";
-      enableBashIntegration = false;
-      extraOptions = [
-        "--long"
-        "--header"
-      ];
-    };
+  programs.eza.enable = true;
   programs.bash = {
     enable = true;
     shellAliases = {
