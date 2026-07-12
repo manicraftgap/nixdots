@@ -1,7 +1,7 @@
 Name = "backgroundSelector"
 NamePretty = "Background Selector"
 Cache = false
-HideFromProviderlist = false -- Set to false if you want it visible in your general providers list
+HideFromProviderlist = false
 SearchName = true
 
 local function ShellEscape(s)
@@ -9,13 +9,9 @@ local function ShellEscape(s)
 end
 
 function FormatName(filename)
-  -- Remove leading number and dash
   local name = filename:gsub("^%d+", ""):gsub("^%-", "")
-  -- Remove extension
   name = name:gsub("%.[^%.]+$", "")
-  -- Replace dashes and underscores with spaces
   name = name:gsub("[-_]", " ")
-  -- Capitalize each word
   name = name:gsub("%S+", function(word)
     return word:sub(1, 1):upper() .. word:sub(2):lower()
   end)
@@ -26,10 +22,10 @@ function GetEntries()
   local entries = {}
   local home = os.getenv("HOME")
 
-  -- The agnostic directory you want to use
   local wallpaper_dir = home .. "/.config/swaybg/backgrounds"
+  local target_dir = home .. "/.config/swaybg/current"
+  local target_file = target_dir .. "/current.png"
 
-  -- Track added files to avoid duplicates (safeguard)
   local seen = {}
 
   local handle = io.popen(
@@ -43,12 +39,17 @@ function GetEntries()
       local filename = background:match("([^/]+)$")
       if filename and not seen[filename] then
         seen[filename] = true
+
+        -- Create the shell command sequence
+        local cmd = "mkdir -p " .. ShellEscape(target_dir) ..
+            " && cp " .. ShellEscape(background) .. " " .. ShellEscape(target_file) ..
+            " && pkill swaybg; swaybg -i " .. ShellEscape(target_file) .. " -m fill &"
+
         table.insert(entries, {
           Text = FormatName(filename),
           Value = background,
           Actions = {
-            -- Ensures old swaybg instances are killed before drawing the new one
-            activate = "pkill swaybg; swaybg -i " .. ShellEscape(background) .. " -m fill &"
+            activate = cmd
           },
           Preview = background,
           PreviewType = "file",
