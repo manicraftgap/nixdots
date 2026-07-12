@@ -28,6 +28,7 @@ in
   programs.eza = {
       enable = true;
       icons = "auto";
+      enableBashIntegration = false;
       extraOptions = [
         "--long"
         "--header"
