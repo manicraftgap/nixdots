@@ -33,7 +33,7 @@ function GetEntries()
   local seen = {}
 
   local handle = io.popen(
-    "find -L " .. ShellEscape(wallpaper_dir)
+    "/run/current-system/sw/bin/find -L " .. ShellEscape(wallpaper_dir)
     ..
     " -maxdepth 1 -type f \\( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' -o -name '*.gif' -o -name '*.bmp' -o -name '*.webp' \\) 2>/dev/null | sort"
   )
