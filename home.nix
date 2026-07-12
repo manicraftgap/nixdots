@@ -28,7 +28,6 @@ in
   programs.eza = {
       enable = true;
       icons = "auto";
-      enableBashIntegration = true; # Automatically hooks into your Bash shell
       extraOptions = [
         "--long"
         "--header"
