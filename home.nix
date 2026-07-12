@@ -37,6 +37,7 @@ in
   programs.bash = {
     enable = true;
     shellAliases = {
+      ls = "eza --long --header --icons=auto";
       btw = "echo i use hyprland btw";
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#hyprnix";
       vim = "nvim";
