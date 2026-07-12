@@ -48,8 +48,9 @@ in
       export PS1='\[\e[38;5;76m\]\u\[\e[0m\] in \[\e[38;5;32m\]\w\[\e[0m\] \\$ '
       nitch
     gcm() {
-      rm -rf ~/nixos-dotfiles
-      git clone https://github.com/manicraftgap/nixos-dotfiles ~/nixos-dotfiles
+      cd ~/nixos-dotfiles || exit 1
+      git fetch origin
+      git reset --hard origin/main
       nrs
       hyprctl reload
     }
