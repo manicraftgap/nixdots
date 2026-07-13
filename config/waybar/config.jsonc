@@ -15,7 +15,7 @@
     "battery"
   ],
   "hyprland/workspaces": {
-    "on-click": "activate",
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = {name} })'",
     "format": "{icon}",
     "format-icons": {
       "default": "",
