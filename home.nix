@@ -18,7 +18,7 @@ let
     swaybg = "swaybg";
     swayosd = "swayosd";
     yazi = "yazi";
-    startship = "starship.toml"
+    startship = "starship.toml";
 
   };
 in
