@@ -40,6 +40,10 @@ hl.bind(mainMod .. " + SHIFT + ALT + right", hl.dsp.window.resize({ x = resizeUn
 hl.bind(mainMod .. " + SHIFT + ALT + left", hl.dsp.window.resize({ x = -resizeUnit, y = 0, relative = true }))
 hl.bind(mainMod .. " + SHIFT + ALT + up", hl.dsp.window.resize({ x = 0, y = -resizeUnit, relative = true }))
 hl.bind(mainMod .. " + SHIFT + ALT + down", hl.dsp.window.resize({ x = 0, y = resizeUnit, relative = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + L", hl.dsp.window.resize({ x = resizeUnit, y = 0, relative = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + H", hl.dsp.window.resize({ x = -resizeUnit, y = 0, relative = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + K", hl.dsp.window.resize({ x = 0, y = -resizeUnit, relative = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + J", hl.dsp.window.resize({ x = 0, y = resizeUnit, relative = true }))
 
 -- === Universal Clipboard ===
 hl.bind(mainMod .. " + C", hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert", window = "activewindow" }))
@@ -101,6 +105,10 @@ hl.bind(mainMod .. " + LEFT", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + RIGHT", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + UP", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + DOWN", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 
 -- Workspaces (1-10)
 for i = 1, 9 do
@@ -129,6 +137,10 @@ hl.bind(mainMod .. " + SHIFT + LEFT", hl.dsp.window.swap({ direction = "left" })
 hl.bind(mainMod .. " + SHIFT + RIGHT", hl.dsp.window.swap({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + UP", hl.dsp.window.swap({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + DOWN", hl.dsp.window.swap({ direction = "down" }))
+hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.swap({ direction = "down" }))
 
 -- Window Grouping
 hl.bind(mainMod .. " + G", hl.dsp.group.toggle())
