@@ -78,22 +78,13 @@ in
     };
 
   home.pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      name = "Notwaita-Black";
-      size = 24;
-      
-      package = pkgs.runCommand "notwaita-black" {} ''
-        mkdir tmp
-        cd tmp
-        ${pkgs.gnutar}/bin/tar -xvf ${pkgs.fetchurl {
-          url = "https://github.com/ful1e5/notwaita-cursor/releases/download/v2.0.1/Notwaita.tar.xz";
-          hash = "sha256-427fWfB/F2HOnXw62X7j6iun1Y72m02VnB+mPof3bL8=";
-        }}
-        mkdir -p $out/share/icons
-        cp -r Notwaita-Black $out/share/icons/
-      '';
-    };
+    gtk.enable = true;
+    x11.enable = true;
+    
+    package = pkgs.quintom-cursor-theme;
+    name = "Quintom_Ink";
+    size = 24;
+  };
 
   home.packages = with pkgs; [
     yazi
