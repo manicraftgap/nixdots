@@ -44,6 +44,5 @@
     dragon-drop
     findutils
     power-profiles-daemon
-    adwaita-icon-theme
   ];
 }

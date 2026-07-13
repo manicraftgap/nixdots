@@ -19,6 +19,7 @@ let
     swayosd = "swayosd";
     yazi = "yazi";
     startship = "starship.toml";
+    Notwaita-Black = "Notwaita-Black";
 
   };
 in
@@ -75,6 +76,17 @@ in
       enableBashIntegration = true;
       settings = builtins.fromTOML (builtins.readFile ./starship.toml);
     };
+
+  home.pointerCursor = {
+    name = "Notwaita-Black";
+    package = pkgs.runCommand "notwaita-black" {} ''
+      mkdir -p $out/share/icons/Notwaita-Black
+      cp -r ${config.home.homeDirectory}/.config/Notwaita-Black/* $out/share/icons/Notwaita-Black/
+    '';
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
   home.packages = with pkgs; [
     yazi
