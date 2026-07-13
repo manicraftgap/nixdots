@@ -18,6 +18,7 @@ let
     swaybg = "swaybg";
     swayosd = "swayosd";
     yazi = "yazi";
+    startship = "starship.toml"
 
   };
 in
@@ -72,18 +73,7 @@ in
   programs.starship = {
       enable = true;
       enableBashIntegration = true;
-      settings = {
-        format = "$directory$character";
-        directory = {
-          style = "white";
-          truncation_length = 3;
-          truncate_to_repo = false;
-        };
-        character = {
-          success_symbol = "[❯](white)";
-          error_symbol = "[❯](white)";   
-        };
-      };
+      settings = builtins.fromTOML (builtins.readFile ./starship.toml);
     };
 
   home.packages = with pkgs; [
