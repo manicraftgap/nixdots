@@ -79,8 +79,8 @@ in
           truncate_to_repo = false;
         };
         character = {
-          success_symbol = "[ ❯](white)";
-          error_symbol = "[ ❯](white)";   
+          success_symbol = "[❯](white)";
+          error_symbol = "[❯](white)";   
         };
       };
     };
