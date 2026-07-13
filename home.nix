@@ -44,6 +44,7 @@ in
       cd ~/nixos-dotfiles || exit 1
       git fetch origin
       git reset --hard origin/main
+      cd ~/
       nrs
       hyprctl reload
     }
