@@ -52,7 +52,7 @@
     nerd-fonts.jetbrains-mono
   ];
   environment.systemPackages = with pkgs; [
-    bibata-cursors
+    adwaita-icon-theme
   ];
 
   environment.sessionVariables = {
