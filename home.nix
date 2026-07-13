@@ -47,7 +47,6 @@ in
       nrs
       hyprctl reload
     }
-    alias ls="eza --long --header --icons=auto"
     '';
     profileExtra = ''
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then

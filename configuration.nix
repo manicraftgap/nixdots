@@ -39,13 +39,10 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
-
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Enable packages
   programs.hyprland.enable = true;
   programs.localsend.enable = true;
+  services.power-profiles-daemon.enable = true;
   hardware.bluetooth.enable = true;
   environment.variables = {
       EDITOR = "nvim";
