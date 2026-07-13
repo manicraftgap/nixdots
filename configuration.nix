@@ -51,9 +51,6 @@
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
-  environment.systemPackages = with pkgs; [
-    adwaita-icon-theme
-  ];
 
   environment.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
