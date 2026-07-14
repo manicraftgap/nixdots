@@ -7,7 +7,4 @@ hl.config({
   decoration = {
     rounding = 0
   },
-  animations = {
-    enabled = false
-  }
 })
