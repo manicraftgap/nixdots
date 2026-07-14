@@ -1,23 +1,22 @@
--- ~/.config/hypr/looknfeel.lua
-
--- Variables
-local activeBorderColor = "rgba(33ccffee) rgba(00ff99ee) 45deg"
-local inactiveBorderColor = "rgba(595959aa)"
+local active_border_color = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 }
+local inactive_border_color = "rgba(595959aa)"
 
 hl.config({
-  -- General layout options
   general = {
     gaps_in = 5,
     gaps_out = 10,
     border_size = 2,
-    ["col.active_border"] = activeBorderColor,
-    ["col.inactive_border"] = inactiveBorderColor,
+
+    col = {
+      active_border = active_border_color,
+      inactive_border = inactive_border_color,
+    },
+
     resize_on_border = false,
     allow_tearing = false,
     layout = "dwindle",
   },
 
-  -- Window decorations and background blur
   decoration = {
     rounding = 0,
 
@@ -38,12 +37,11 @@ hl.config({
     },
   },
 
-  -- Window grouping styles
   group = {
-    ["col.border_active"] = activeBorderColor,
-    ["col.border_inactive"] = inactiveBorderColor,
-    ["col.border_locked_active"] = activeBorderColor,
-    ["col.border_locked_inactive"] = inactiveBorderColor,
+    col = {
+      border_active = active_border_color,
+      border_inactive = inactive_border_color,
+    },
 
     groupbar = {
       font_size = 12,
@@ -57,15 +55,45 @@ hl.config({
       gaps_out = 0,
       text_color = "rgb(ffffff)",
       text_color_inactive = "rgba(ffffff90)",
-      ["col.active"] = "rgba(00000040)",
-      ["col.inactive"] = "rgba(00000020)",
+      col = {
+        active = "rgba(00000040)",
+        inactive = "rgba(00000020)",
+      },
       gradients = true,
       gradient_rounding = 0,
       gradient_round_only_edges = false,
     },
   },
 
-  -- Dwindle and Master layouts
+  animations = {
+    enabled = true,
+  },
+})
+
+-- Default animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
+hl.curve("easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
+hl.curve("easeInOutCubic", { type = "bezier", points = { { 0.65, 0.05 }, { 0.36, 1 } } })
+hl.curve("linear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } })
+hl.curve("almostLinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1.0 } } })
+hl.curve("quick", { type = "bezier", points = { { 0.15, 0 }, { 0.1, 1 } } })
+
+hl.animation({ leaf = "global", enabled = true, speed = 10, bezier = "default" })
+hl.animation({ leaf = "border", enabled = true, speed = 5.39, bezier = "easeOutQuint" })
+hl.animation({ leaf = "windows", enabled = true, speed = 3.79, bezier = "easeOutQuint" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 4.1, bezier = "easeOutQuint", style = "popin 87%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 1.49, bezier = "linear", style = "popin 87%" })
+hl.animation({ leaf = "fadeIn", enabled = true, speed = 1.73, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeOut", enabled = true, speed = 1.46, bezier = "almostLinear" })
+hl.animation({ leaf = "fade", enabled = true, speed = 3.03, bezier = "quick" })
+hl.animation({ leaf = "layers", enabled = true, speed = 3.81, bezier = "easeOutQuint" })
+hl.animation({ leaf = "layersIn", enabled = true, speed = 4, bezier = "easeOutQuint", style = "fade" })
+hl.animation({ leaf = "layersOut", enabled = true, speed = 1.5, bezier = "linear", style = "fade" })
+hl.animation({ leaf = "fadeLayersIn", enabled = true, speed = 1.79, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 1.39, bezier = "almostLinear" })
+hl.animation({ leaf = "workspaces", enabled = false })
+hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 3, bezier = "easeOutQuint", style = "slidevert" })
+
+hl.config({
   dwindle = {
     preserve_split = true,
     force_split = 2,
@@ -79,13 +107,13 @@ hl.config({
     new_status = "master",
   },
 
-  -- Miscellaneous and Input behavior
   misc = {
     disable_hyprland_logo = true,
     disable_splash_rendering = true,
     disable_scale_notification = true,
     focus_on_activate = true,
-    animate_manual_resizes = true,
+    anr_missed_pings = 3,
+    on_focus_under_fullscreen = 1,
   },
 
   cursor = {
@@ -95,38 +123,5 @@ hl.config({
 
   binds = {
     hide_special_on_workspace_change = true,
-  },
-
-  -- Animations and Bezier curves
-  animations = {
-    enabled = true,
-
-    -- Custom Bezier curves
-    bezier = {
-      "easeOutQuint, 0.23, 1, 0.32, 1",
-      "easeInOutCubic, 0.65, 0.05, 0.36, 1",
-      "linear, 0, 0, 1, 1",
-      "almostLinear, 0.5, 0.5, 0.75, 1.0",
-      "quick, 0.15, 0, 0.1, 1",
-    },
-
-    -- Animation assignments
-    animation = {
-      "global, 1, 10, default",
-      "border, 1, 5.39, easeOutQuint",
-      "windows, 1, 3.79, easeOutQuint",
-      "windowsIn, 1, 4.1, easeOutQuint, popin 87%",
-      "windowsOut, 1, 1.49, linear, popin 87%",
-      "fadeIn, 1, 1.73, almostLinear",
-      "fadeOut, 1, 1.46, almostLinear",
-      "fade, 1, 3.03, quick",
-      "layers, 1, 3.81, easeOutQuint",
-      "layersIn, 1, 4, easeOutQuint, fade",
-      "layersOut, 1, 1.5, linear, fade",
-      "fadeLayersIn, 1, 1.79, almostLinear",
-      "fadeLayersOut, 1, 1.39, almostLinear",
-      "workspaces, 0, 0, ease",
-      "specialWorkspace, 1, 3, easeOutQuint, slidevert",
-    },
   },
 })
