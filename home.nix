@@ -79,9 +79,9 @@ in
 
   programs.waybar = {
     enable = true;
-    package = pkgs.waybar.override {
-      experimentalFeatures = true;
-    };
+    package = pkgs.waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = (oldAttrs.mesonFlags or []) ++ [ "-Dexperimental=true" ];
+    });
   };
 
   home.pointerCursor = {
