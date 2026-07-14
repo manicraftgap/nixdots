@@ -19,63 +19,22 @@ let
     swayosd = "swayosd";
     yazi = "yazi";
     startship = "starship.toml";
-    Notwaita-Black = "Notwaita-Black";
-
   };
 in
 {
+  imports = [
+    ./shell.nix
+  ];
   home.username = "mani";
   home.homeDirectory = "/home/mani";
   home.stateVersion = "26.11";
   programs.eza.enable = true;
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      ls = "eza --long --header --icons=auto";
-      btw = "echo i use hyprland btw";
-      nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#hyprnix";
-      vim = "nvim";
-    };
-    initExtra = ''
-    if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
-      . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-    fi
-      export PS1='\[\e[38;5;76m\]\u\[\e[0m\] in \[\e[38;5;32m\]\w\[\e[0m\] \\$ '
-      nitch
-    gcm() {
-      cd ~/nixos-dotfiles || exit 1
-      git fetch origin
-      git reset --hard origin/main
-      cd ~/
-      nrs
-      hyprctl reload
-    }
-    '';
-    profileExtra = ''
-      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-          exec start-hyprland
-      fi
-    '';
-  };
-
-  programs.zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-      options = [ "--cmd cd" ];
-    };
-
   xdg.configFile = builtins.mapAttrs
     (name: subpath: {
       source = create_symlink "${dotfiles}/${subpath}";
       recursive = true;
     })
     configs;
-
-  programs.starship = {
-      enable = true;
-      enableBashIntegration = true;
-      settings = builtins.fromTOML (builtins.readFile ./starship.toml);
-    };
 
   home.pointerCursor = {
     gtk.enable = true;
