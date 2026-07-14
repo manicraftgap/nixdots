@@ -13,7 +13,7 @@
     wiremix
     ghostty
     librewolf
-    waybar
+    (waybar.override { experimentalFeatures = true; })
     waywall
     prismlauncher
     nitch
