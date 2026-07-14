@@ -7,6 +7,7 @@
     kitty
     impala
     neovim
+    tree-sitter
     unzip
     fastfetch
     bluetui
