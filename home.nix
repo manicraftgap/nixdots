@@ -77,6 +77,13 @@ in
       settings = builtins.fromTOML (builtins.readFile ./starship.toml);
     };
 
+  programs.waybar = {
+    enable = true;
+    package = pkgs.waybar.override {
+      experimentalFeatures = true;
+    };
+  };
+
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
