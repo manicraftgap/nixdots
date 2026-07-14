@@ -109,7 +109,7 @@ hl.window_rule({ match = { tag = "default-opacity" }, opacity = "0.97 0.9" })
 
 -- Make specific terminal tools float, center, and resize cleanly
 hl.window_rule({
-  match = { title = "^(impala|bluetui|wiremix|btop)$" },
+  match = { title = "^(impala|bluetui|wiremix|btop|LocalSend|Steam)$" },
   float = 1,
   size = "800 500",
   center = 1
