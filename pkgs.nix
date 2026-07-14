@@ -14,6 +14,7 @@
     ghostty
     librewolf
     waywall
+    waybar
     prismlauncher
     nitch
     hyprlock

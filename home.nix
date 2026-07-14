@@ -77,13 +77,6 @@ in
       settings = builtins.fromTOML (builtins.readFile ./starship.toml);
     };
 
-  programs.waybar = {
-    enable = true;
-    package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = (oldAttrs.mesonFlags or []) ++ [ "-Dexperimental=true" ];
-    });
-  };
-
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
