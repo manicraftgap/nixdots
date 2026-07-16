@@ -53,26 +53,62 @@ hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("walker -m clipboard"))
 
 -- === Media & Brightness ===
 -- Volume
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))
-hl.bind("ALT + XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"))
-hl.bind("ALT + XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"))
+-- Volume & Mic Controls
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"),
+  { locked = true, repeating = true, ignore_mods = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"),
+  { locked = true, repeating = true, ignore_mods = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"),
+  { locked = true, repeating = true, ignore_mods = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("swayosd-client --input-volume mute-toggle"),
+  { locked = true, repeating = true, ignore_mods = true })
 
--- Brightness
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s +5%"))
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 5%-"))
-hl.bind("SHIFT + XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 100%"))
-hl.bind("SHIFT + XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 1%"))
-hl.bind("ALT + XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s +1%"))
-hl.bind("ALT + XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 1%-"))
+-- Screen Brightness
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("swayosd-client --brightness raise"),
+  { locked = true, repeating = true, ignore_mods = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lower"),
+  { locked = true, repeating = true, ignore_mods = true })
 
--- Media Playback
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"))
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
+-- Keyboard Backlight
+hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("kbd-backlight up"),
+  { locked = true, repeating = true, ignore_mods = true })
+hl.bind("XF86KbdBrightnessDown", hl.dsp.exec_cmd("kbd-backlight down"),
+  { locked = true, repeating = true, ignore_mods = true })
+hl.bind("XF86KbdLightOnOff", hl.dsp.exec_cmd("kbd-backlight cycle"), { locked = true, ignore_mods = true })
+
+-- Touchpad Controls
+hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd("touchpad-toggle"), { locked = true, ignore_mods = true })
+hl.bind("XF86TouchpadOn", hl.dsp.exec_cmd("touchpad-toggle on"), { locked = true, ignore_mods = true })
+hl.bind("XF86TouchpadOff", hl.dsp.exec_cmd("touchpad-toggle off"), { locked = true, ignore_mods = true })
+
+-- Display Mirroring
+hl.bind("SUPER + p", hl.dsp.exec_cmd("display-mirror toggle"), { locked = true, ignore_mods = true })
+
+-- Precise 1% Adjustments
+hl.bind("ALT + XF86AudioRaiseVolume",
+  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+ && swayosd-client --output-volume raise"),
+  { locked = true, repeating = true, ignore_mods = true })
+hl.bind("ALT + XF86AudioLowerVolume",
+  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && swayosd-client --output-volume lower"),
+  { locked = true, repeating = true, ignore_mods = true })
+hl.bind("ALT + XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 1%+ && swayosd-client --brightness raise"),
+  { locked = true, repeating = true, ignore_mods = true })
+hl.bind("ALT + XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 1%- && swayosd-client --brightness lower"),
+  { locked = true, repeating = true, ignore_mods = true })
+
+-- Media Player Controls
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("swayosd-client --playerctl next"), { locked = true, ignore_mods = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("swayosd-client --playerctl play-pause"), { locked = true, ignore_mods = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("swayosd-client --playerctl play-pause"), { locked = true, ignore_mods = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("swayosd-client --playerctl previous"), { locked = true, ignore_mods = true })
+
+-- Audio Output Switch
+hl.bind(mainMod .. " + XF86AudioMute", hl.dsp.exec_cmd("audio-output-switch"), { locked = true, ignore_mods = true })
+
+-- Monitor Focus
+hl.bind("CTRL + ALT + TAB", hl.dsp.focus({ monitor = "+1" }))
+hl.bind("CTRL + ALT + SHIFT + TAB", hl.dsp.focus({ monitor = "-1" }))
+
 
 -- Hyprsunset Toggle --
 hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd([[
@@ -198,46 +234,3 @@ hl.bind(mainMod .. " + F9", hl.dsp.exec_cmd("voxtype record stop"), { release = 
 hl.bind(mainMod .. " + CTRL + Z",
   hl.dsp.exec_cmd([[hyprctl keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float + 1')]]))
 hl.bind(mainMod .. " + CTRL + ALT + Z", hl.dsp.exec_cmd("hyprctl keyword cursor:zoom_factor 1"))
-
--- Laptop Display Mirroring
-local is_mirroring = false
-
-hl.bind(mainMod .. " + CTRL + ALT + Delete", function()
-  local handle = io.popen("hyprctl monitors -j")
-  if not handle then return end
-  local json_text = handle:read("*a")
-  handle:close()
-
-  local internal_monitor = nil
-  local external_monitor = nil
-
-  for monitor_name in json_text:gmatch('"name":%s*"([^"]+)"') do
-    if monitor_name:find("eDP") then
-      internal_monitor = monitor_name
-    else
-      if not external_monitor then
-        external_monitor = monitor_name
-      end
-    end
-  end
-
-  if not external_monitor then
-    os.execute("notify-send -u low '󰍹   No external monitors found for mirror'")
-    return
-  end
-
-  if is_mirroring then
-    hl.dispatch(hl.dsp.exec_cmd(string.format("hyprctl keyword monitor %s, preferred, auto, 1", external_monitor)))
-    os.execute("notify-send -u low '󰍹   Extended mode restored'")
-    is_mirroring = false
-  else
-    if internal_monitor then
-      hl.dispatch(hl.dsp.exec_cmd(string.format("hyprctl keyword monitor %s, preferred, auto, 1, mirror, %s",
-        external_monitor, internal_monitor)))
-      os.execute(string.format("notify-send -u low '󰍹   Mirroring enabled (%s)'", external_monitor))
-      is_mirroring = true
-    else
-      os.execute("notify-send -u low '󰍹   No laptop monitor found to mirror'")
-    end
-  end
-end)

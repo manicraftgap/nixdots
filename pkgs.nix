@@ -45,5 +45,7 @@
     dragon-drop
     findutils
     power-profiles-daemon
+    piper
+    jq
   ];
 }

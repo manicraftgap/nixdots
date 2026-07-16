@@ -24,6 +24,7 @@ in
 {
   imports = [
     ./shell.nix
+    ./utilities.nix
   ];
   home.username = "mani";
   home.homeDirectory = "/home/mani";
