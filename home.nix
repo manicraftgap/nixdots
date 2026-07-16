@@ -46,6 +46,17 @@ in
     size = 24;
   };
 
+  services.swayosd.enable = true;
+  systemd.user.services.swayosd = {
+    Unit = {
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
+
   home.packages = with pkgs; [
     yazi
     (pkgs.writeShellApplication 
