@@ -22,6 +22,7 @@
     hyprsunset
     hypridle
     swaybg
+    swayosd
     git
     clang
     walker

@@ -82,7 +82,8 @@ hl.bind("XF86TouchpadOn", hl.dsp.exec_cmd("touchpad-toggle on"), { locked = true
 hl.bind("XF86TouchpadOff", hl.dsp.exec_cmd("touchpad-toggle off"), { locked = true, ignore_mods = true })
 
 -- Display Mirroring
-hl.bind("SUPER + p", hl.dsp.exec_cmd("display-mirror toggle"), { locked = true, ignore_mods = true })
+hl.bind(mainMod .. " + CTRL + ALT + Delete", hl.dsp.exec_cmd("display-mirror toggle"),
+  { locked = true, ignore_mods = true })
 
 -- Precise 1% Adjustments
 hl.bind("ALT + XF86AudioRaiseVolume",
@@ -199,10 +200,6 @@ hl.bind(mainMod .. " + ALT + DOWN", hl.dsp.window.move({ into_group = "down" }))
 hl.bind(mainMod .. " + ALT + TAB", hl.dsp.group.active({ index = 1 }))
 hl.bind(mainMod .. " + ALT + SHIFT + TAB", hl.dsp.group.active({ index = -1 }))
 
--- Monitor Cycling
-hl.bind("CTRL + ALT + TAB", hl.dsp.monitor.focus({ index = "+1" }))
-hl.bind("CTRL + ALT + SHIFT + TAB", hl.dsp.monitor.focus({ index = "-1" }))
-
 -- Move/Resize with Mouse
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
@@ -212,7 +209,7 @@ hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind(mainMod .. " + CTRL + E", hl.dsp.exec_cmd("walker -m symbols"))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("pkill waybar || waybar &"))
 hl.bind("XF86Calculator", hl.dsp.exec_cmd("gnome-calculator"))
-hl.bind("SUPER + CTRL + SPACE", hl.dsp.exec_cmd("walker --provider menus:backgroundSelector"))
+hl.bind(mainMod .. " + CTRL + SPACE", hl.dsp.exec_cmd("walker --provider menus:backgroundSelector"))
 
 
 -- Screenshots / Captures
