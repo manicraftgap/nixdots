@@ -1,10 +1,23 @@
 { pkgs, ... }:
 
 let
-  # 1. Keyboard Backlight Controller
+  # 1. Keyboard Backlight Controller (Cleaned up from original source)
   kbdBacklight = pkgs.writeShellScriptBin "kbd-backlight" ''
-    device="asus::kbd_backlight"
     direction="''${1:-up}"
+
+    # Find keyboard backlight device (look for *kbd_backlight* pattern in leds class)
+    device=""
+    for candidate in /sys/class/leds/*kbd_backlight*; do
+      if [[ -e $candidate ]]; then
+        device="$(basename "$candidate")"
+        break
+      fi
+    done
+
+    if [[ -z $device ]]; then
+      echo "No keyboard backlight device found" >&2
+      exit 1
+    fi
 
     if [[ "$direction" == "off" ]]; then
       ${pkgs.brightnessctl}/bin/brightnessctl -sd "$device" set 0 >/dev/null
@@ -14,9 +27,11 @@ let
       exit 0
     fi
 
+    # Get current and max brightness to determine step size.
     max_brightness="$(${pkgs.brightnessctl}/bin/brightnessctl -d "$device" max)"
     current_brightness="$(${pkgs.brightnessctl}/bin/brightnessctl -d "$device" get)"
 
+    # Calculate step as 10% of max brightness.
     step=$(( max_brightness / 10 ))
     (( step < 1 )) && step=1
 
@@ -31,16 +46,25 @@ let
       (( new_brightness < 0 )) && new_brightness=0
     fi
 
+    # Set the new brightness.
     ${pkgs.brightnessctl}/bin/brightnessctl -d "$device" set "$new_brightness" >/dev/null
-    percent=$(( new_brightness * 100 / max_brightness ))
-    
+
+    # Calculate percentage and send directly to SwayOSD
+    percent=$((new_brightness * 100 / max_brightness))
     ${pkgs.swayosd}/bin/swayosd-client --custom-message "Keyboard Backlight: $percent%"
   '';
 
-  # 2. Touchpad Toggle
+  # 2. Touchpad Toggle (Dynamically resolves touchpad using hyprctl)
   touchpadToggle = pkgs.writeShellScriptBin "touchpad-toggle" ''
     STATE_CONF="$HOME/.local/state/hypr/touchpad-disabled.conf"
-    device="asuf1207:00-2808:0219-touchpad"
+
+    # Query device list from hyprland directly to find the active touchpad
+    device=$(${pkgs.hyprland}/bin/hyprctl devices -j | ${pkgs.jq}/bin/jq -r '.mice[] | select(.name | ascii_downcase | contains("touchpad")).name' | head -n 1)
+
+    if [[ -z "$device" ]]; then
+      echo "No touchpad device found" >&2
+      exit 1
+    fi
 
     enable() {
       ${pkgs.hyprland}/bin/hyprctl keyword "device[$device]:enabled" true >/dev/null
@@ -62,7 +86,7 @@ let
     esac
   '';
 
-  # 3. Audio Output Switcher
+  # 3. Audio Output Switcher (Standardised client calls)
   audioOutputSwitch = pkgs.writeShellScriptBin "audio-output-switch" ''
     sinks=$(${pkgs.pulseaudio}/bin/pactl -f json list sinks | ${pkgs.jq}/bin/jq '[.[] | select((.ports | length == 0) or ([.ports[]? | .availability != "not available"] | any))]')
     sinks_count=$(echo "$sinks" | ${pkgs.jq}/bin/jq '. | length')
@@ -116,15 +140,17 @@ let
       ${pkgs.wireplumber}/bin/wpctl set-default "$next_sink_wpid"
     fi
 
+    # Using standard swayosd-client wrapper
     ${pkgs.swayosd}/bin/swayosd-client \
       --custom-message "$next_sink_description" \
       --custom-icon "$next_sink_volume_icon"
   '';
 
-  # 4. Display Mirror Switcher
+  # 4. Display Mirror Switcher (Cleansed of external omarchy toggle systems)
   displayMirror = pkgs.writeShellScriptBin "display-mirror" ''
     TOGGLE_FLAG="$HOME/.local/state/hypr/internal-monitor-mirror.conf"
 
+    # Get monitor names dynamically
     INTERNAL=$(${pkgs.hyprland}/bin/hyprctl monitors -j | ${pkgs.jq}/bin/jq -r '.[] | select(.name | contains("eDP")).name' | head -n 1)
     EXTERNAL=$(${pkgs.hyprland}/bin/hyprctl monitors -j | ${pkgs.jq}/bin/jq -r '.[] | select(.name | contains("eDP") | not).name' | head -n 1)
 
@@ -133,6 +159,7 @@ let
         ${pkgs.libnotify}/bin/notify-send -u low "󰍹    No external monitors found for mirror"
         exit 1
       fi
+
       if [[ -z "$INTERNAL" ]]; then
         ${pkgs.libnotify}/bin/notify-send -u low "󰍹    No laptop monitor found to mirror"
         exit 1
@@ -161,16 +188,6 @@ let
   '';
 in {
   home.packages = [
-    # Required dependencies
-    pkgs.swayosd
-    pkgs.brightnessctl
-    pkgs.wireplumber
-    pkgs.playerctl
-    pkgs.jq
-    pkgs.pulseaudio
-    pkgs.libnotify
-
-    # Our custom helper packages
     kbdBacklight
     touchpadToggle
     audioOutputSwitch
