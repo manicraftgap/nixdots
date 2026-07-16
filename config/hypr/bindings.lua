@@ -132,6 +132,17 @@ hl.bind(mainMod .. " + TAB", hl.dsp.focus({ workspace = "+1" }))
 hl.bind(mainMod .. " + SHIFT + TAB", hl.dsp.focus({ workspace = "-1" }))
 hl.bind(mainMod .. " + CTRL + TAB", hl.dsp.focus({ workspace = "previous" }))
 
+-- Winwdow Cycling
+hl.bind("ALT + TAB", function()
+  hl.dispatch(hl.dsp.window.cycle_next())
+  hl.dispatch(hl.dsp.window.bring_to_top())
+end)
+
+hl.bind("ALT + SHIFT + TAB", function()
+  hl.dispatch(hl.dsp.window.cycle_next({ prev = true }))
+  hl.dispatch(hl.dsp.window.bring_to_top())
+end)
+
 -- Swap Windows
 hl.bind(mainMod .. " + SHIFT + LEFT", hl.dsp.window.swap({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + RIGHT", hl.dsp.window.swap({ direction = "right" }))
@@ -151,6 +162,10 @@ hl.bind(mainMod .. " + ALT + UP", hl.dsp.window.move({ into_group = "up" }))
 hl.bind(mainMod .. " + ALT + DOWN", hl.dsp.window.move({ into_group = "down" }))
 hl.bind(mainMod .. " + ALT + TAB", hl.dsp.group.active({ index = 1 }))
 hl.bind(mainMod .. " + ALT + SHIFT + TAB", hl.dsp.group.active({ index = -1 }))
+
+-- Monitor Cycling
+hl.bind("CTRL + ALT + TAB", hl.dsp.monitor.focus({ index = "+1" }))
+hl.bind("CTRL + ALT + SHIFT + TAB", hl.dsp.monitor.focus({ index = "-1" }))
 
 -- Move/Resize with Mouse
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -174,7 +189,55 @@ hl.bind(mainMod .. " + SHIFT + COMMA", hl.dsp.exec_cmd("makoctl dismiss --all"))
 hl.bind(mainMod .. " + ALT + COMMA", hl.dsp.exec_cmd("makoctl invoke"))
 hl.bind(mainMod .. " + SHIFT + ALT + COMMA", hl.dsp.exec_cmd("makoctl restore"))
 
+-- Dictation
+hl.bind(mainMod .. " + CTRL + X", hl.dsp.exec_cmd("voxtype record toggle"))
+hl.bind(mainMod .. " + F9", hl.dsp.exec_cmd("voxtype record start"))
+hl.bind(mainMod .. " + F9", hl.dsp.exec_cmd("voxtype record stop"), { release = true })
+
 -- Zoom
 hl.bind(mainMod .. " + CTRL + Z",
-  hl.dsp.exec_cmd("hyprctl keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float + 1')"))
-hl.bind(mainMod .. " + CTRL + ALT + Z", hl.dsp.exec_cmd("hyprlock"))
+  hl.dsp.exec_cmd([[hyprctl keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float + 1')]]))
+hl.bind(mainMod .. " + CTRL + ALT + Z", hl.dsp.exec_cmd("hyprctl keyword cursor:zoom_factor 1"))
+
+-- Laptop Display Mirroring
+local is_mirroring = false
+
+hl.bind(mainMod .. " + CTRL + ALT + Delete", function()
+  local handle = io.popen("hyprctl monitors -j")
+  if not handle then return end
+  local json_text = handle:read("*a")
+  handle:close()
+
+  local internal_monitor = nil
+  local external_monitor = nil
+
+  for monitor_name in json_text:gmatch('"name":%s*"([^"]+)"') do
+    if monitor_name:find("eDP") then
+      internal_monitor = monitor_name
+    else
+      if not external_monitor then
+        external_monitor = monitor_name
+      end
+    end
+  end
+
+  if not external_monitor then
+    os.execute("notify-send -u low '󰍹   No external monitors found for mirror'")
+    return
+  end
+
+  if is_mirroring then
+    hl.dispatch(hl.dsp.exec_cmd(string.format("hyprctl keyword monitor %s, preferred, auto, 1", external_monitor)))
+    os.execute("notify-send -u low '󰍹   Extended mode restored'")
+    is_mirroring = false
+  else
+    if internal_monitor then
+      hl.dispatch(hl.dsp.exec_cmd(string.format("hyprctl keyword monitor %s, preferred, auto, 1, mirror, %s",
+        external_monitor, internal_monitor)))
+      os.execute(string.format("notify-send -u low '󰍹   Mirroring enabled (%s)'", external_monitor))
+      is_mirroring = true
+    else
+      os.execute("notify-send -u low '󰍹   No laptop monitor found to mirror'")
+    end
+  end
+end)
