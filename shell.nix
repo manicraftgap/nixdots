@@ -15,6 +15,11 @@
     historySize = 32768;
     historyFileSize = 32768;
     historyControl = [ "ignoreboth" ];
+    profileExtra = ''
+          if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+              exec uwsm start -S hyprland-uwsm.desktop
+          fi
+        '';
     bashrcExtra = ''
       set +h
       if [[ ! -v BASH_COMPLETION_VERSINFO && -f /usr/share/bash-completion/bash_completion ]]; then

@@ -9,7 +9,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  networking.hostName = "hyprnix"; # Define your hostname.
+  networking.hostName = "hyprnix";
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
   time.timeZone = "America/Chicago";
