@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 let
-  # 1. Keyboard Backlight Controller (Cleaned up from original source)
   kbdBacklight = pkgs.writeShellScriptBin "kbd-backlight" ''
     direction="''${1:-up}"
 
@@ -54,7 +53,6 @@ let
     ${pkgs.swayosd}/bin/swayosd-client --custom-message "Keyboard Backlight: $percent%"
   '';
 
-  # 2. Touchpad Toggle (Dynamically resolves touchpad using hyprctl)
   touchpadToggle = pkgs.writeShellScriptBin "touchpad-toggle" ''
     STATE_CONF="$HOME/.local/state/hypr/touchpad-disabled.conf"
 
@@ -86,7 +84,6 @@ let
     esac
   '';
 
-  # 3. Audio Output Switcher (Standardised client calls)
   audioOutputSwitch = pkgs.writeShellScriptBin "audio-output-switch" ''
     sinks=$(${pkgs.pulseaudio}/bin/pactl -f json list sinks | ${pkgs.jq}/bin/jq '[.[] | select((.ports | length == 0) or ([.ports[]? | .availability != "not available"] | any))]')
     sinks_count=$(echo "$sinks" | ${pkgs.jq}/bin/jq '. | length')
@@ -146,7 +143,6 @@ let
       --custom-icon "$next_sink_volume_icon"
   '';
 
-  # 4. Display Mirror Switcher (Cleansed of external omarchy toggle systems)
   displayMirror = pkgs.writeShellScriptBin "display-mirror" ''
     TOGGLE_FLAG="$HOME/.local/state/hypr/internal-monitor-mirror.conf"
 
@@ -186,6 +182,53 @@ let
       *) echo "Usage: display-mirror {on|off|toggle}" >&2; exit 1 ;;
     esac
   '';
+  screenshotCapture = pkgs.writeShellScriptBin "screenshot-capture" ''
+      DIR="$HOME/Pictures/Screenshots"
+      mkdir -p "$DIR"
+      
+      FILE="$DIR/Screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
+      MODE="''${1:-region}" # Default to region mode
+      EDITOR="satty"        # Change to your preferred editor
+
+      case "$MODE" in
+        fullscreen)
+          ${pkgs.grim}/bin/grim "$FILE"
+          ;;
+        region|*)
+          ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "$FILE"
+          ;;
+      esac
+
+      # Ensure the file was successfully captured
+      if [ -f "$FILE" ]; then
+        ${pkgs.wl-clipboard}/bin/wl-copy < "$FILE"
+        
+        # Clean helper to open the editor cleanly
+        open_editor() {
+          if [ "$EDITOR" = "satty" ]; then
+            ${pkgs.satty}/bin/satty --filename "$FILE" \
+              --output-filename "$FILE" \
+              --actions-on-enter save-to-clipboard \
+              --save-after-copy \
+              --copy-command '${pkgs.wl-clipboard}/bin/wl-copy'
+          else
+            $EDITOR "$FILE"
+          fi
+        }
+
+        # Send notification with interactive button and capture response
+        ACTION=$(${pkgs.libnotify}/bin/notify-send \
+          "Screenshot saved to clipboard and file" \
+          "Click here or press Super + Alt + , to edit" \
+          -t 10000 \
+          -i "$FILE" \
+          -A "default=edit")
+
+        if [ "$ACTION" = "default" ]; then
+          open_editor
+        fi
+      fi
+    '';
 in {
   home.packages = [
     kbdBacklight

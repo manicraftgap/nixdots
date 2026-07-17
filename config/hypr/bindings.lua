@@ -25,7 +25,8 @@ hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("uwsm-app -- xdg-terminal-exe
 hl.bind(mainMod .. " + SHIFT + G", hl.dsp.exec_cmd("uwsm-app -- signal-desktop"))
 
 -- --- Screenshots ---
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("grim -g '$(slurp)' - | wl-copy"))
+hl.bind(mainMod .. " + SHIFT, S", hl.dsp.exec_cmd("screenshot-capture region"))
+hl.bind("", "Print", hl.dsp.exec_cmd("screenshot-capture fullscreen"))
 
 -- --- Web Applications ---
 hl.bind(mainMod .. " + SHIFT + ALT + A", hl.dsp.exec_cmd([[uwsm-app -- xdg-open "https://chatgpt.com"]]))
