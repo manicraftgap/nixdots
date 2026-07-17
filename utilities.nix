@@ -235,5 +235,6 @@ in {
     touchpadToggle
     audioOutputSwitch
     displayMirror
+    screenshotCapture
   ];
 }
