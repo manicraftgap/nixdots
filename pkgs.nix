@@ -32,6 +32,7 @@
     playerctl
     grim
     slurp
+    satty
     wl-clipboard
     mako
     hyprpicker
