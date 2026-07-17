@@ -7,7 +7,6 @@
     fzf
     zoxide
     starship
-    nitch
   ];
 
   programs.bash = {
@@ -46,9 +45,6 @@
         . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
       fi
       export PS1='\[\e[38;5;76m\]\u\[\e[0m\] in \[\e[38;5;32m\]\w\[\e[0m\] \\$ '
-      if command -v nitch &> /dev/null; then
-        nitch
-      fi
 
       n() { 
         if [ "$#" -eq 0 ]; then command nvim . ; else command nvim "$@"; fi
