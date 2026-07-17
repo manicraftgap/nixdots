@@ -25,8 +25,9 @@ hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("uwsm-app -- xdg-terminal-exe
 hl.bind(mainMod .. " + SHIFT + G", hl.dsp.exec_cmd("uwsm-app -- signal-desktop"))
 
 -- --- Screenshots ---
-hl.bind(mainMod .. " + SHIFT, S", hl.dsp.exec_cmd("screenshot-capture region"))
-hl.bind("", "Print", hl.dsp.exec_cmd("screenshot-capture fullscreen"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("screenshot-capture region"))
+hl.bind("PRINT", hl.dsp.exec_cmd("screenshot-capture fullscreen"))
+hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("pkill hyprpicker || hyprpicker -a"))
 
 -- --- Web Applications ---
 hl.bind(mainMod .. " + SHIFT + ALT + A", hl.dsp.exec_cmd([[uwsm-app -- xdg-open "https://chatgpt.com"]]))
@@ -211,11 +212,6 @@ hl.bind(mainMod .. " + CTRL + E", hl.dsp.exec_cmd("walker -m symbols"))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("pkill waybar || waybar &"))
 hl.bind("XF86Calculator", hl.dsp.exec_cmd("gnome-calculator"))
 hl.bind(mainMod .. " + CTRL + SPACE", hl.dsp.exec_cmd("walker --provider menus:backgroundSelector"))
-
-
--- Screenshots / Captures
-hl.bind("PRINT", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
-hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("pkill hyprpicker || hyprpicker -a"))
 
 -- Notifications (Mako)
 hl.bind(mainMod .. " + COMMA", hl.dsp.exec_cmd("makoctl dismiss"))
