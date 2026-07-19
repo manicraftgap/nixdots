@@ -252,5 +252,6 @@ in {
     displayMirror
     screenshotCapture
     powerMenu
+    powerProfileMenu
   ];
 }
