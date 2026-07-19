@@ -111,7 +111,7 @@ hl.bind("CTRL + ALT + TAB", hl.dsp.focus({ monitor = "+1" }))
 hl.bind("CTRL + ALT + SHIFT + TAB", hl.dsp.focus({ monitor = "-1" }))
 
 -- Power Menu
-hl.bind("", "XF86PowerOff", hl.dsp.exec_cmd("power-menu"))
+hl.bind("XF86PowerOff", hl.dsp.exec_cmd("power-menu"))
 
 -- Hyprsunset Toggle --
 hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd([[
