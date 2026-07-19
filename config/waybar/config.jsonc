@@ -78,7 +78,7 @@
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "interval": 5,
-    "on-click": "profile=$(powerprofilesctl list | awk '/^[[:space:]*]*[a-zA-Z0-9\-]+:$/ { gsub(/^[*[:space:]]+|:$/, ""); print }' | walker --dmenu -p 'Power Profile…' --width 300 --height 150) && [ -n "$profile" ] && powerprofilesctl set "$profile"",
+    "on-click": "power-profile-menu",
     "on-click-right": "notify-send -u low \"Battery Status\" \"$(powerprofilesctl get) profile active\"",
     "states": {
       "warning": 20,

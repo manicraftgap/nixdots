@@ -238,6 +238,12 @@ let
           "󰐥 Shutdown")  systemctl poweroff ;;
       esac
     '';
+  powerProfileMenu = pkgs.writeShellScriptBin "power-profile-menu" ''
+      profile=$(powerprofilesctl list | awk '/^[[:space:]*]*[a-zA-Z0-9\-]+:$/ { gsub(/^[*[:space:]]+|:$/, ""); print }' | walker --dmenu -p 'Power Profile…' --width 300 --height 150)
+      if [ -n "$profile" ]; then
+          powerprofilesctl set "$profile"
+      fi
+    '';
 in {
   home.packages = [
     kbdBacklight
