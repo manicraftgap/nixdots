@@ -229,6 +229,15 @@ let
         fi
       fi
     '';
+  powerMenu = pkgs.writeShellScriptBin "power-menu" ''
+      selected=$(printf "󰅍 Suspend\n󰍁 Lock\n󰜉 Restart\n󰐥 Shutdown" | ${pkgs.walker}/bin/walker --dmenu -p 'Power Menu…' --width 300 --height 200)
+      case "$selected" in
+          "󰅍 Suspend")   systemctl suspend ;;
+          "󰍁 Lock")      ${pkgs.hyprlock}/bin/hyprlock ;;
+          "󰜉 Restart")   systemctl reboot ;;
+          "󰐥 Shutdown")  systemctl poweroff ;;
+      esac
+    '';
 in {
   home.packages = [
     kbdBacklight
@@ -236,5 +245,6 @@ in {
     audioOutputSwitch
     displayMirror
     screenshotCapture
+    powerMenu
   ];
 }

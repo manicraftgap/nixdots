@@ -53,8 +53,6 @@ hl.bind(mainMod .. " + V", hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert"
 hl.bind(mainMod .. " + X", hl.dsp.send_shortcut({ mods = "CTRL", key = "X", window = "activewindow" }))
 hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("walker -m clipboard"))
 
--- === Media & Brightness ===
--- Volume
 -- Volume & Mic Controls
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"),
   { locked = true, repeating = true, ignore_mods = true })
@@ -112,6 +110,8 @@ hl.bind(mainMod .. " + XF86AudioMute", hl.dsp.exec_cmd("audio-output-switch"), {
 hl.bind("CTRL + ALT + TAB", hl.dsp.focus({ monitor = "+1" }))
 hl.bind("CTRL + ALT + SHIFT + TAB", hl.dsp.focus({ monitor = "-1" }))
 
+-- Power Menu
+hl.bind("", "XF86PowerOff", hl.dsp.exec_cmd("power-menu"))
 
 -- Hyprsunset Toggle --
 hl.bind(mainMod .. " + CTRL + N", hl.dsp.exec_cmd([[
