@@ -31,6 +31,10 @@
     variant = "";
   };
 
+  services.logind.extraConfig = ''
+    HandlePowerKey=ignore
+  '';
+
   services.getty.autologinUser ="mani";
   users.users."mani" = {
     isNormalUser = true;
