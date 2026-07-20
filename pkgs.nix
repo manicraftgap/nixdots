@@ -58,5 +58,6 @@
     mermaid-cli
     trash-cli
     sqlite
+    vesktop
   ];
 }

@@ -20,6 +20,7 @@ let
     yazi = "yazi";
     startship = "starship.toml";
     fastfetch = "fastfetch";
+    vesktop = "vesktop";
   };
 in
 {
