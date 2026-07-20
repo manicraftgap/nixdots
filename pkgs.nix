@@ -51,5 +51,12 @@
     ripgrep
     fd
     lazygit
+    lua-language-server
+    imagemagick
+    ghostscript
+    tectonic
+    mermaid-cli
+    trash-cli
+    sqlite
   ];
 }

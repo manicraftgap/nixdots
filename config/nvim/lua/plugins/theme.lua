@@ -40,8 +40,8 @@ return {
     },
   },
   {
-    "echasnovski/mini.hipatterns",
-    recommended = true,
+    "nvim-mini/mini.nvim",
+    main = "mini.hipatterns",
     opts = function()
       local hi = require("mini.hipatterns")
       return {
