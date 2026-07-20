@@ -48,5 +48,8 @@
     power-profiles-daemon
     piper
     jq
+    ripgrep
+    fd
+    lazygit
   ];
 }

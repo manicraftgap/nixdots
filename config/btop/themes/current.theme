@@ -1,92 +1,76 @@
 # ────────────────────────────────────────────────────────────
-# Bashtop theme - Omarchy Matte Black
-# by tahayvr
-# https://github.com/tahayvr
+# btop theme - Nothing OS Greyscale & Red
 # ────────────────────────────────────────────────────────────
 
-# Colors should be in 6 or 2 character hexadecimal or single spaced rgb decimal: "#RRGGBB", "#BW" or "0-255 0-255 0-255"
-# example for white: "#ffffff", "#ff" or "255 255 255".
-
-# All graphs and meters can be gradients
-# For single color graphs leave "mid" and "end" variable empty.
-# Use "start" and "end" variables for two color gradient
-# Use "start", "mid" and "end" for three color gradient
-
-# Main background, empty for terminal default, need to be empty if you want transparent background
-theme[main_bg]=""
+# Main background, empty for terminal default
+theme[main_bg]="#000000"
 
 # Main text color
-theme[main_fg]="#EAEAEA"
+theme[main_fg]="#e5e5e5"
 
 # Title color for boxes
-theme[title]="#8a8a8d"
+theme[title]="#ffffff"
 
 # Highlight color for keyboard shortcuts
-theme[hi_fg]="#f59e0b"
+theme[hi_fg]="#b90606"
 
 # Background color of selected item in processes box
-theme[selected_bg]="#f59e0b"
+theme[selected_bg]="#591212"
 
 # Foreground color of selected item in processes box
-theme[selected_fg]="#EAEAEA"
+theme[selected_fg]="#ffffff"
 
 # Color of inactive/disabled text
-theme[inactive_fg]="#333333"
+theme[inactive_fg]="#525252"
 
-# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
-theme[proc_misc]="#8a8a8d"
+# Misc colors for processes box including mini cpu graphs
+theme[proc_misc]="#a3a3a3"
 
-# Cpu box outline color
-theme[cpu_box]="#8a8a8d"
-
-# Memory/disks box outline color
-theme[mem_box]="#8a8a8d"
-
-# Net up/down box outline color
-theme[net_box]="#8a8a8d"
-
-# Processes box outline color
-theme[proc_box]="#8a8a8d"
+# Box outline colors
+theme[cpu_box]="#525252"
+theme[mem_box]="#525252"
+theme[net_box]="#525252"
+theme[proc_box]="#525252"
 
 # Box divider line and small boxes line color
-theme[div_line]="#8a8a8d"
+theme[div_line]="#525252"
 
-# Temperature graph colors
-theme[temp_start]="#8a8a8d"
-theme[temp_mid]="#f59e0b"
-theme[temp_end]="#b91c1c"
+# Temperature graph colors (Muted red -> Deep Red -> Bright Red)
+theme[temp_start]="#591212"
+theme[temp_mid]="#b90606"
+theme[temp_end]="#ef4444"
 
 # CPU graph colors
-theme[cpu_start]="#8a8a8d"
-theme[cpu_mid]="#f59e0b"
-theme[cpu_end]="#b91c1c"
+theme[cpu_start]="#591212"
+theme[cpu_mid]="#b90606"
+theme[cpu_end]="#ef4444"
 
 # Mem/Disk free meter
-theme[free_start]="#8a8a8d"
-theme[free_mid]="#f59e0b"
-theme[free_end]="#b91c1c"
+theme[free_start]="#171717"
+theme[free_mid]="#525252"
+theme[free_end]="#a3a3a3"
 
 # Mem/Disk cached meter
-theme[cached_start]="#8a8a8d"
-theme[cached_mid]="#f59e0b"
-theme[cached_end]="#b91c1c"
+theme[cached_start]="#171717"
+theme[cached_mid]="#525252"
+theme[cached_end]="#a3a3a3"
 
 # Mem/Disk available meter
-theme[available_start]="#8a8a8d"
-theme[available_mid]="#f59e0b"
-theme[available_end]="#b91c1c"
+theme[available_start]="#171717"
+theme[available_mid]="#525252"
+theme[available_end]="#a3a3a3"
 
-# Mem/Disk used meter
-theme[used_start]="#8a8a8d"
-theme[used_mid]="#f59e0b"
-theme[used_end]="#b91c1c"
+# Mem/Disk used meter (Gradients to Red as it fills up)
+theme[used_start]="#525252"
+theme[used_mid]="#591212"
+theme[used_end]="#b90606"
 
 # Download graph colors
-theme[download_start]="#8a8a8d"
-theme[download_mid]="#f59e0b"
-theme[download_end]="#b91c1c"
+theme[download_start]="#525252"
+theme[download_mid]="#591212"
+theme[download_end]="#b90606"
 
 # Upload graph colors
-theme[upload_start]="#8a8a8d"
-theme[upload_mid]="#f59e0b"
-theme[upload_end]="#b91c1c"
+theme[upload_start]="#525252"
+theme[upload_mid]="#591212"
+theme[upload_end]="#b90606"
