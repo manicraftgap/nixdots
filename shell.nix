@@ -24,7 +24,7 @@
     shellAliases = {
       ls = "eza --long --header --icons=auto";
       lsa = "ls -a";
-      lt = "eza --tree --level=2 --long --icons --git";
+      lt = "eza --tree --level=4 --long --icons --git";
       lta = "lt -a";
       ".." = "cd ..";
       "..." = "cd ../..";

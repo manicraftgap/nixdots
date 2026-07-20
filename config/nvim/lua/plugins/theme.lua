@@ -6,30 +6,49 @@ return {
     config = function()
       local colors = {
         base00 = "#000000", -- Background
-        base01 = "#171717", -- Statuslines / Panels
-        base02 = "#591212", -- Selection Background (Muted Red)
-        base03 = "#4a4a4a", -- Comments / Inactive Text (Dark Grey)
-        base04 = "#b90606", -- Accent / Line Numbers
-        base05 = "#eaeaea", -- Default Text / Properties (Off-white)
-        base06 = "#ffffff", -- Variables / Function arguments (Pure White)
-        base07 = "#ffffff", -- Special keys
-        base08 = "#ef4444", -- Keywords / Tags (Bright Red)
-        base09 = "#ff0000", -- Numbers / Constants (Pure Red)
-        base0A = "#ef4444", -- Functions / Classes
-        base0B = "#ff0000", -- Strings (Pure Red)
-        base0C = "#eaeaea", -- Operators
-        base0D = "#ffffff", -- Methods / Identifiers (White)
-        base0E = "#ef4444", -- Conditionals / Imports (Bright Red)
-        base0F = "#dc2626", -- Warnings / Errors
+        base01 = "#0d0d0d", -- Panels / StatusLine
+        base02 = "#1c1c1c", -- Selection
+        base03 = "#444444", -- Comments
+        base04 = "#e53935", -- Active line number / Accent
+        base05 = "#999999", -- Default text
+        base06 = "#ffffff", -- Functions / Methods
+        base07 = "#ffffff", -- Special Keys
+        base08 = "#e53935", -- Keywords / Tags / Imports
+        base09 = "#e53935", -- Numbers / Constants
+        base0A = "#ffffff", -- Classes / Types
+        base0B = "#777777", -- Strings
+        base0C = "#ffffff", -- Operators
+        base0D = "#ffffff", -- Identifiers
+        base0E = "#e53935", -- Conditionals / Return statements
+        base0F = "#e53935", -- Warnings / Errors
       }
 
       require("base16-colorscheme").setup(colors)
+
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#444444" })
+      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e53935", bold = true })
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#080808" })
+      vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#cccccc" })
+      vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#eeeeee", bold = true })
+      vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { fg = "#e53935", bg = "#141414", bold = true })
     end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "base16-colorscheme",
+      colorscheme = function() end,
     },
+  },
+  {
+    "echasnovski/mini.hipatterns",
+    recommended = true,
+    opts = function()
+      local hi = require("mini.hipatterns")
+      return {
+        highlighters = {
+          hex_color = hi.gen_highlighter.hex_color({ priority = 2000 }),
+        },
+      }
+    end,
   },
 }
