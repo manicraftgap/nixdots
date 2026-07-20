@@ -31,9 +31,11 @@
     variant = "";
   };
 
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
+  services.logind.settings = {
+    Login = {
+      HandlePowerKey = "ignore";
+    };
+  };
 
   services.getty.autologinUser ="mani";
   users.users."mani" = {
