@@ -19,6 +19,7 @@ let
     swayosd = "swayosd";
     yazi = "yazi";
     startship = "starship.toml";
+    fastfetch = "fastfetch";
   };
 in
 {
