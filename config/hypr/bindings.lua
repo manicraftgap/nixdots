@@ -16,13 +16,13 @@ hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("uwsm-app -- xdg-open 'https:
 hl.bind(mainMod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("uwsm-app -- xdg-open --incognito 'https://'"))
 
 -- File Manager
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("uwsm-app -- nautilus --new-window"))
-hl.bind(mainMod .. " + ALT + SHIFT + F", hl.dsp.exec_cmd("uwsm-app -- nautilus --new-window ~"))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("uwsm-app -- yazi --new-window"))
+hl.bind(mainMod .. " + ALT + SHIFT + F", hl.dsp.exec_cmd("uwsm-app -- yazi --new-window ~"))
 
 -- Multimedia / System TUI Launchers
 hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("uwsm-app -- flatpak run com.github.neithern.g4music"))
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("uwsm-app -- xdg-terminal-exec lazydocker"))
-hl.bind(mainMod .. " + SHIFT + G", hl.dsp.exec_cmd("uwsm-app -- signal-desktop"))
+hl.bind(mainMod .. " + SHIFT + G", hl.dsp.exec_cmd("uwsm-app -- vesktop"))
 
 -- --- Screenshots ---
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("screenshot-capture region"))
@@ -210,7 +210,6 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("walker"))
 hl.bind(mainMod .. " + CTRL + E", hl.dsp.exec_cmd("walker -m symbols"))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("pkill waybar || waybar &"))
-hl.bind("XF86Calculator", hl.dsp.exec_cmd("gnome-calculator"))
 hl.bind(mainMod .. " + CTRL + SPACE", hl.dsp.exec_cmd("walker --provider menus:backgroundSelector"))
 
 -- Notifications (Mako)

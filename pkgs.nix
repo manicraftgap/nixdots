@@ -38,9 +38,6 @@
     hyprpicker
     jq
     uwsm
-    gnome-calculator
-    signal-desktop
-    nautilus
     tmux
     libnotify
     dragon-drop
