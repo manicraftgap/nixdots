@@ -41,9 +41,12 @@
   users.users."mani" = {
     isNormalUser = true;
     description = "mani";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "input" ];
     packages = with pkgs; [];
   };
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0b10", MODE="0660", TAG+="uaccess", TAG+="udev-acl"
+  '';
   nixpkgs.config.allowUnfree = true;
   programs.hyprland.enable = true;
   programs.localsend.enable = true;
