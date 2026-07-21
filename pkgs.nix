@@ -1,17 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  services.flatpak.enable = true;
-  services.flatpak.remotes = lib.mkOptionDefault [{
-    name = "flathub";
-    location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-  }];
-  services.flatpak.packages = [
-    "org.vinegarhq.Sober"
-  ];
-};
-
-{
   environment.systemPackages = with pkgs; [
     wget
     btop
