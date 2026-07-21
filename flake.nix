@@ -14,6 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+    helium.url = "github:oxcl/nix-flake-helium-browser";
   };
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs: {
@@ -22,6 +23,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         nixos-hardware.nixosModules.asus-zephyrus-gu605my
+        inputs.helium.nixosModules.default
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {

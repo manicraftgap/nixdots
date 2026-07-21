@@ -50,6 +50,12 @@
   nixpkgs.config.allowUnfree = true;
   programs.hyprland.enable = true;
   programs.localsend.enable = true;
+  programs.helium = {
+      enable = true;
+      flags = [
+        "--ozone-platform-hint=auto"
+      ];
+    };
   services.power-profiles-daemon.enable = true;
   services.ratbagd.enable = true;
   services.flatpak.enable = true;
