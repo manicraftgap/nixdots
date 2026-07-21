@@ -59,13 +59,6 @@ in
     };
   };
 
-  services.flatpak = {
-    enable = true;
-    packages = [
-      "org.vinegarhq.Sober"
-    ];
-  };
-
   home.packages = with pkgs; [
     yazi
     (pkgs.writeShellApplication 
