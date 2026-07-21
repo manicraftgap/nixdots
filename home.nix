@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
@@ -27,11 +27,28 @@ in
   imports = [
     ./shell.nix
     ./utilities.nix
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
   ];
   home.username = "mani";
   home.homeDirectory = "/home/mani";
   home.stateVersion = "26.11";
+
+  services.flatpak = {
+    enable = true;
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+    ];
+    packages = [
+      "org.vinegarhq.Sober"
+    ];
+    update.auto.enable = true;
+  };
+
   programs.eza.enable = true;
+
   xdg.configFile = builtins.mapAttrs
     (name: subpath: {
       source = create_symlink "${dotfiles}/${subpath}";

@@ -49,6 +49,7 @@
   programs.localsend.enable = true;
   services.power-profiles-daemon.enable = true;
   services.ratbagd.enable = true;
+  services.flatpak.enable = true;
   hardware.bluetooth.enable = true;
   environment.variables = {
       EDITOR = "nvim";
