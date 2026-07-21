@@ -59,5 +59,20 @@
     trash-cli
     sqlite
     vesktop
+    mcpelauncher-ui-qt
+    steam
+    samrewritten
+    bitwarden
+    cliamp
+    galaxy-buds-client
+    gale
+    kdePackages.kdenlive
+    obs-studio
+    pinta
+    telegram-desktop
+    libreoffice
+    mullvad-vpn
+    mpv
+
   ];
 }
