@@ -11,9 +11,9 @@ hl.bind(mainMod .. " + CTRL + W", hl.dsp.exec_cmd("ghostty --title=impala -e imp
 hl.bind(mainMod .. " + CTRL + T", hl.dsp.exec_cmd("ghostty --title=btop -e btop"))
 
 -- Web Browser
-hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd("uwsm-app -- xdg-open 'https://'"))
-hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("uwsm-app -- xdg-open 'https://'"))
-hl.bind(mainMod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("uwsm-app -- xdg-open --incognito 'https://'"))
+hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd("uwsm-app -- librewolf"))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("uwsm-app -- librewolf))
+hl.bind(mainMod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("uwsm-app -- librewofl --private-window""))
 
 -- File Manager
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("uwsm-app -- yazi --new-window"))
