@@ -62,7 +62,6 @@
     mcpelauncher-ui-qt
     steam
     samrewritten
-    bitwarden
     cliamp
     galaxy-buds-client
     gale
@@ -73,13 +72,5 @@
     libreoffice
     mullvad-vpn
     mpv
-
   ];
-
-  services.flatpak = {
-    enable = true;
-    packages = [
-      "org.vinegarhq.Sober"
-    ];
-  };
 }
