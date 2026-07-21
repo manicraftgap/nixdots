@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     elephant.url = "github:abenz1267/elephant";
     walker = {
       url = "github:abenz1267/walker";
@@ -20,6 +21,7 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        nixos-hardware.nixosModules.asus-zephyrus-gu605my
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
