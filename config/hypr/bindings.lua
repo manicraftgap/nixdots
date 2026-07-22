@@ -16,12 +16,11 @@ hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("uwsm-app -- librewolf"))
 hl.bind(mainMod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("uwsm-app -- librewofl --private-window"))
 
 -- File Manager
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("uwsm-app -- yazi --new-window"))
-hl.bind(mainMod .. " + ALT + SHIFT + F", hl.dsp.exec_cmd("uwsm-app -- yazi --new-window ~"))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("uwsm-app -- nautilus --new-window"))
+hl.bind(mainMod .. " + ALT + SHIFT + F", hl.dsp.exec_cmd("uwsm-app -- nautilus --new-window ~"))
 
 -- Multimedia / System TUI Launchers
 hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("uwsm-app -- flatpak run com.github.neithern.g4music"))
-hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("uwsm-app -- xdg-terminal-exec lazydocker"))
 hl.bind(mainMod .. " + SHIFT + G", hl.dsp.exec_cmd("uwsm-app -- vesktop"))
 
 -- --- Screenshots ---
@@ -81,8 +80,7 @@ hl.bind("XF86TouchpadOn", hl.dsp.exec_cmd("touchpad-toggle on"), { locked = true
 hl.bind("XF86TouchpadOff", hl.dsp.exec_cmd("touchpad-toggle off"), { locked = true, ignore_mods = true })
 
 -- Display Mirroring
-hl.bind(mainMod .. " + CTRL + ALT + Delete", hl.dsp.exec_cmd("display-mirror toggle"),
-  { locked = true, ignore_mods = true })
+hl.bind(mainMod .. " + CTRL + ALT + Delete", hl.dsp.exec_cmd("display-mirror toggle"))
 
 -- Precise 1% Adjustments
 hl.bind("ALT + XF86AudioRaiseVolume",

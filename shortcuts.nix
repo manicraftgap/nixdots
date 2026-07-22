@@ -6,9 +6,9 @@
       comment = "Launch Draftout instance in Prism Launcher";
       icon = "/home/mani/.local/share/PrismLauncher/instances/Draftout/minecraft/icon.png";
       exec = "/home/mani/Applications/PrismLauncher-Linux-x86_64.AppImage --launch \"Draftout\"";
-      path = "/home/mani/.local/share/PrismLauncher/instances/Draftout/minecraft/icon.png";
       categories = [ "Game" ];
       settings = {
+        Path = "/home/mani/.local/share/PrismLauncher/instances/Draftout/minecraft/icon.png";
         Keywords = "Minecraft;Prism;Launcher;";
       };
     };
@@ -29,9 +29,9 @@
       comment = "Launch MCSR instance in Prism Launcher";
       icon = "/home/mani/.local/share/PrismLauncher/instances/MCSRRanked/minecraft/icon.png";
       exec = "/home/mani/Applications/PrismLauncher-Linux-x86_64.AppImage --launch \"MCSRRanked\"";
-      path = "/home/mani/.local/share/PrismLauncher/instances/MCSRRanked";
       categories = [ "Game" ];
       settings = {
+        Path = "/home/mani/.local/share/PrismLauncher/instances/MCSRRanked";
         Keywords = "Minecraft;Prism;Launcher;";
       };
     };
@@ -52,9 +52,9 @@
       comment = "Launch PVP+ instance in Prism Launcher";
       icon = "/home/mani/.local/share/PrismLauncher/instances/PVP+/minecraft/icon.png";
       exec = "/home/mani/Applications/PrismLauncher-Linux-x86_64.AppImage --launch \"PVP+\"";
-      path = "/home/mani/.local/share/PrismLauncher/instances/PVP+";
       categories = [ "Game" ];
       settings = {
+        Path = "/home/mani/.local/share/PrismLauncher/instances/PVP+";
         Keywords = "Minecraft;Prism;Launcher;";
       };
     };

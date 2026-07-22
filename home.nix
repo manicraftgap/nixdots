@@ -20,8 +20,8 @@ let
     yazi = "yazi";
     startship = "starship.toml";
     fastfetch = "fastfetch";
-    vesktop = "vesktop";
     icons = "icons";
+    "vesktop/themes" = "vesktop/themes";
   };
 in
 {

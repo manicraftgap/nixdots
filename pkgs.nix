@@ -59,6 +59,7 @@
     mcpelauncher-ui-qt
     samrewritten
     cliamp
+    nautilus
     galaxy-buds-client
     gale
     kdePackages.kdenlive
