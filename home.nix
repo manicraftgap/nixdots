@@ -21,12 +21,14 @@ let
     startship = "starship.toml";
     fastfetch = "fastfetch";
     vesktop = "vesktop";
+    icons = "icons";
   };
 in
 {
   imports = [
     ./shell.nix
     ./utilities.nix
+    ./shortcuts.nix
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
   ];
   home.username = "mani";
