@@ -68,9 +68,17 @@
     nerd-fonts.jetbrains-mono
   ];
 
+  xdg.mime.defaultApplications = {
+    "text/html" = "librewolf.desktop";
+    "x-scheme-handler/http" = "librewolf.desktop";
+    "x-scheme-handler/https" = "librewolf.desktop";
+  };
+
   environment.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
+    DEFAULT_BROWSER = "${pkgs.librewolf}/bin/librewolf";
+    BROWSER = "${pkgs.librewolf}/bin/librewolf";
   };
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "26.05"; # Did you read the comment?
