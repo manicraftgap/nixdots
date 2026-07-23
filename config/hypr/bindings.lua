@@ -58,8 +58,14 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume 
   { locked = true, repeating = true, ignore_mods = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"),
   { locked = true, repeating = true, ignore_mods = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("swayosd-client --input-volume mute-toggle"),
-  { locked = true, repeating = true, ignore_mods = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd([[
+    sh -c "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; \
+    if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED; then \
+        swayosd-client --custom-message 'Microphone muted' --custom-icon 'microphone-sensitivity-muted-symbolic'; \
+    else \
+        swayosd-client --custom-message 'Microphone on' --custom-icon 'audio-input-microphone-symbolic'; \
+    fi"
+]]), { locked = true, repeating = false, ignore_mods = true })
 
 -- Screen Brightness
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("swayosd-client --brightness raise"),
