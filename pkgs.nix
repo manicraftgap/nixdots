@@ -69,5 +69,6 @@
     libreoffice
     mullvad-vpn
     mpv
+    inputs.superfile.packages.${system}.default
   ];
 }
