@@ -15,7 +15,10 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     helium.url = "github:oxcl/nix-flake-helium-browser";
-    superfile.url = "github:yorukot/superfile";
+    superfile = {
+          url = "github:yorukot/superfile";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
   };
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs: {

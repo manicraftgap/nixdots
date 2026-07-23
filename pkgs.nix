@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -69,6 +69,6 @@
     libreoffice
     mullvad-vpn
     mpv
-    inputs.superfile.packages.${system}.default
+    inputs.superfile.packages.${pkgs.system}.default
   ];
 }
